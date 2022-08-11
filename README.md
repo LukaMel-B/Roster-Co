@@ -4,13 +4,12 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This is my first project that in flutter using GetX state management. Roster Co is a task management app. This is an android app.
 
-A few resources to get you started if this is your first Flutter project:
+UI design of the project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [Figma: My own design inspired form Taras Migulko](https://lnkd.in/g7B8PWmf)
+- [Dribble: Taras Migulko's UI design](https://lnkd.in/gixKy6EM)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+ <img alt="UI-Design" src="https://github.com/LukaMel-B/Roster-Co/blob/main/assets/ui_design.png?raw=true" width="800" height="650" />
