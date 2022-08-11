@@ -10,7 +10,8 @@ class HomeScreen extends StatelessWidget {
       appBar: _buildAppBar(),
       body: Container(
         color: Colors.white,
-        child: Column(
+        child: ListView(
+          physics: const BouncingScrollPhysics(),
           children: const [
             QuotesCard(),
           ],
