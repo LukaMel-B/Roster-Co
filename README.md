@@ -1,4 +1,4 @@
-# roster_co
+# Roster Co
 
 A new Flutter project.
 
@@ -12,4 +12,4 @@ UI design of the project:
 - [Dribble: Taras Migulko's UI design](https://lnkd.in/gixKy6EM)
 
 
- <img alt="UI-Design" src="https://github.com/LukaMel-B/Roster-Co/blob/main/assets/ui_design.png?raw=true" width="800" height="650" />
+ <img alt="UI-Design" src="https://github.com/LukaMel-B/Roster-Co/blob/main/roster_co/assets/ui_design.png?raw=true" width="800" height="650" />
