@@ -1,26 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:roster_co/widgets/quotes_card.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class MainAppbarWidget extends AppBar {
+  MainAppbarWidget({Key? key}) : super(key: key);
 
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildAppBar(),
-      body: Container(
-        color: Colors.white,
-        child: ListView(
-          physics: const BouncingScrollPhysics(),
-          children: const [
-            QuotesCard(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  AppBar _buildAppBar() {
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.white,
