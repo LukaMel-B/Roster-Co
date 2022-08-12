@@ -71,7 +71,7 @@ class WelcomeScreen extends StatelessWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15))),
         child: const Icon(
-          FontAwesomeIcons.arrowRight,
+          FontAwesomeIcons.arrowRightLong,
           color: Colors.white,
           size: 25,
         ),
