@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:roster_co/screens/events/events_screen.dart';
-import 'package:roster_co/screens/home/home_common_page.dart';
 import 'package:roster_co/screens/tasks/task_screen.dart';
 import 'package:roster_co/widgets/bottom_nav_widget.dart';
 import 'package:roster_co/widgets/quotes_card.dart';
@@ -13,21 +12,23 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: ValueListenableBuilder(
-          valueListenable: selectedIndexNotifier,
-          builder: (BuildContext context, int clickedIndex, Widget? _) {
-            return Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    physics: const BouncingScrollPhysics(),
-                    children: [const QuotesCard(), pages[clickedIndex]],
+      body: Container(
+        color: Colors.white,
+        child: ValueListenableBuilder(
+            valueListenable: selectedIndexNotifier,
+            builder: (BuildContext context, int clickedIndex, Widget? _) {
+              return Column(
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [const QuotesCard(), pages[clickedIndex]],
+                    ),
                   ),
-                ),
-              ],
-            );
-            ;
-          }),
+                ],
+              );
+              ;
+            }),
+      ),
       bottomNavigationBar: const BottomNavigationBarWidget(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(

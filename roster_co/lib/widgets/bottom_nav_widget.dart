@@ -15,8 +15,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-                color: Colors.grey.withOpacity(0.2),
-                spreadRadius: 5,
+                color: Colors.grey.withOpacity(0.25),
+                spreadRadius: 6,
                 blurRadius: 10)
           ]),
       child: ClipRRect(
