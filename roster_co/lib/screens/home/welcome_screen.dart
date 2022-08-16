@@ -63,24 +63,20 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: TextButton(
-        style: TextButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            backgroundColor: Colors.black,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15))),
-        child: const Icon(
-          FontAwesomeIcons.arrowRightLong,
-          color: Colors.white,
-          size: 25,
-        ),
+      floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.to(
             () => const HomeScreen(),
             transition: Transition.cupertino,
           );
         },
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        elevation: 20,
+        backgroundColor: Colors.black,
+        child: const Icon(
+          FontAwesomeIcons.arrowRightLong,
+          size: 25,
+        ),
       ),
     );
   }

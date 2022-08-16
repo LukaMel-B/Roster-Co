@@ -23,73 +23,97 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+            ),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20),
+              child: Column(
                 children: [
-                  SizedBox(
-                    width: 83,
-                    child: TextButton(
-                      onPressed: () {
-                        datePicker();
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
-                            'Date',
-                            style: TextStyle(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 83,
+                        child: TextButton(
+                          onPressed: () {
+                            datePicker();
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                'Date',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 19,
+                                    fontFamily: 'Metropolis',
+                                    letterSpacing: .5),
+                              ),
+                              Icon(
+                                FontAwesomeIcons.angleDown,
+                                size: 13,
                                 color: Colors.black,
-                                fontSize: 19,
-                                fontFamily: 'Metropolis',
-                                letterSpacing: .5),
+                              )
+                            ],
                           ),
-                          Icon(
-                            FontAwesomeIcons.angleDown,
-                            size: 13,
-                            color: Colors.black,
-                          )
-                        ],
+                        ),
                       ),
-                    ),
+                      Text(
+                        (choosen.isEmpty)
+                            ? '${todayDate.year} $todayMonth ${todayDate.day}'
+                            : '$pickedYear $todayMonth $pickedDay',
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Metropolis',
+                        ),
+                      )
+                    ],
                   ),
-                  Text(
-                    (choosen.isEmpty)
-                        ? '${todayDate.year} $todayMonth ${todayDate.day}'
-                        : '$pickedYear $todayMonth $pickedDay',
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'Metropolis',
+                  // SliverList(
+                  //   delegate: SliverChildBuilderDelegate(((context, index) {
+                  //     return SingleChildScrollView(
+                  //       child: Column(
+                  //         children: [
+                  //           Container(
+                  //             child: ListView.builder(
+                  //                 shrinkWrap: true,
+                  //                 physics: NeverScrollableScrollPhysics(),
+                  //                 itemBuilder: (BuildContext context, int index) {
+                  //                   return TaskCategoryCard(index: index);
+                  //                 }),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     );
+                  //   }), childCount: 3),
+                  // )
+                  SizedBox(
+                    height: (MediaQuery.of(context).size.height) - 90,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (BuildContext context, index) {
+                        return TaskCategoryCard(
+                          index: index,
+                        );
+                      },
+                      itemCount: 9,
                     ),
                   )
                 ],
               ),
-              SizedBox(
-                height: (MediaQuery.of(context).size.height),
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (BuildContext context, index) {
-                    return TaskCategoryCard(
-                      index: index,
-                    );
-                  },
-                  itemCount: 9,
-                ),
-              )
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -100,6 +124,9 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
         initialDate: todayDate,
         firstDate: todayDate,
         lastDate: DateTime(2100));
+    if (pickedDate.toString().isEmpty) {
+      pickedDate = todayDate;
+    }
     setState(() {
       choosen = 'notnull';
       pickedDay = pickedDate!.day.toString();

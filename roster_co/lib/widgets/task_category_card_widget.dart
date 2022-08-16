@@ -17,7 +17,10 @@ class TaskCategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Get.to(() => CategoryDetailsScreen());
+        Get.to(
+          () => CategoryDetailsScreen(),
+          transition: Transition.cupertino,
+        );
       },
       child: Container(
         padding: const EdgeInsets.all(20),
