@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roster_co/screens/home/home_screen.dart';
+import 'package:roster_co/widgets/floating_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // extendBodyBehindAppBar: true,
       body: SafeArea(
         child: Container(
           color: Colors.white,
@@ -63,21 +65,13 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.to(
-            () => const HomeScreen(),
-            transition: Transition.cupertino,
-          );
-        },
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        elevation: 20,
-        backgroundColor: Colors.black,
-        child: const Icon(
-          FontAwesomeIcons.arrowRightLong,
-          size: 25,
-        ),
-      ),
+      floatingActionButton: const CustomFloatingButton(
+          page: HomeScreen(),
+          icon: Icon(
+            FontAwesomeIcons.arrowRightLong,
+            size: 25,
+          ),
+          radius: 15),
     );
   }
 }

@@ -1,14 +1,20 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:roster_co/constants/textfield_input.dart';
+import 'package:roster_co/constants/create_task_consts.dart';
+import 'package:roster_co/constants/title_const_class.dart';
+import 'package:roster_co/screens/tasks/category_details.dart';
 import 'package:roster_co/widgets/create_task_datepick.dart';
+import 'package:roster_co/widgets/create_task_priority.dart';
+import 'package:roster_co/widgets/create_task_snooze_picker.dart';
+import 'package:roster_co/widgets/create_task_time_picker.dart';
+import 'package:roster_co/widgets/floating_button.dart';
+import 'package:roster_co/widgets/subtask_add_widget.dart';
 
 class CreateTaskPage extends StatelessWidget {
-  CreateTaskPage({Key? key}) : super(key: key);
-  GlobalKey<FormState> formKey = GlobalKey();
-  final titleController = TextEditingController();
+  const CreateTaskPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,30 +31,47 @@ class CreateTaskPage extends StatelessWidget {
                 child: ListView(
                   physics: const BouncingScrollPhysics(),
                   children: [
-                    const Text(
-                      'Task Title',
-                      style: TextStyle(
-                          fontFamily: 'Metropolis',
-                          color: Colors.black,
-                          fontSize: 15),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    const CreatePageTitle(title: 'Task Title'),
+                    six1,
                     TextFormField(
-                      style: const TextStyle(
-                          fontFamily: 'Metropolis', fontSize: 14),
-                      validator: ((value) {
-                        if (value!.isEmpty) {
-                          return "Please enter a title!";
-                        } else {
-                          return null;
-                        }
-                      }),
+                      style: txStyle,
+                      validator: validator,
                       controller: titleController,
                       decoration: textfieldDeco,
                     ),
-                    TaskDatePick()
+                    six2,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        TaskDatePicker(),
+                        PriorityPickerWidget(),
+                      ],
+                    ),
+                    six2,
+                    const CreatePageTitle(title: 'Description'),
+                    six1,
+                    TextFormField(
+                      style: txStyle,
+                      validator: validator,
+                      controller: descController,
+                      decoration: textfieldDeco,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 6,
+                    ),
+                    six2,
+                    six1,
+                    const CreatePageTitle(title: 'Time'),
+                    six1,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        TaskTimePicker(),
+                        SnoozePickerWidget(),
+                      ],
+                    ),
+                    six2,
+                    const AddedSubTasks(),
+                    six3,
                   ],
                 ),
               ),
@@ -56,31 +79,17 @@ class CreateTaskPage extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: CustomFloatingButton(
+          page: CategoryDetailsScreen(),
+          icon: const Icon(
+            Icons.done,
+            size: 45,
+          ),
+          radius: 15),
     );
   }
 
   AppBar _buildAppBar() {
-    return AppBar(
-      centerTitle: true,
-      elevation: 0,
-      backgroundColor: Colors.white,
-      automaticallyImplyLeading: false,
-      title: const Text(
-        'Create task',
-        style: TextStyle(
-            fontFamily: 'Metropolis', color: Colors.black, fontSize: 19),
-      ),
-      actions: [
-        TextButton(
-            onPressed: () {
-              Get.back();
-            },
-            child: const Icon(
-              Icons.close,
-              color: Colors.black,
-              size: 33,
-            ))
-      ],
-    );
+    return appBar;
   }
 }

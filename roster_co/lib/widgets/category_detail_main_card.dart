@@ -120,10 +120,24 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
 
   Future datePicker() async {
     pickedDate = await showDatePicker(
-        context: context,
-        initialDate: todayDate,
-        firstDate: todayDate,
-        lastDate: DateTime(2100));
+      context: context,
+      initialDate: todayDate,
+      firstDate: todayDate,
+      lastDate: DateTime(2100),
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData(
+              fontFamily: 'Metropolis',
+              primaryColor: const Color.fromARGB(255, 0, 0, 0),
+              colorScheme: const ColorScheme.light(
+                  primary: Color.fromARGB(255, 0, 0, 0)),
+              buttonTheme: const ButtonThemeData(
+                textTheme: ButtonTextTheme.primary,
+              )),
+          child: child!,
+        );
+      },
+    );
     if (pickedDate.toString().isEmpty) {
       pickedDate = todayDate;
     }

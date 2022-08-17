@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:roster_co/screens/events/events_screen.dart';
 import 'package:roster_co/screens/tasks/task_screen.dart';
 import 'package:roster_co/widgets/bottom_nav_widget.dart';
+import 'package:roster_co/widgets/floating_button.dart';
 import 'package:roster_co/widgets/quotes_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -31,16 +32,13 @@ class HomeScreen extends StatelessWidget {
       ),
       bottomNavigationBar: const BottomNavigationBarWidget(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        elevation: 0,
-        backgroundColor: Colors.black,
-        child: const Icon(
-          Icons.add_rounded,
-          size: 36,
-        ),
-      ),
+      floatingActionButton: const CustomFloatingButton(
+          page: SizedBox(),
+          icon: Icon(
+            Icons.add_rounded,
+            size: 40,
+          ),
+          radius: 10),
     );
   }
 

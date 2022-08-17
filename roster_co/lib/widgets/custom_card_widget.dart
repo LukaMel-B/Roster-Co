@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PickerWidgetCard extends StatelessWidget {
-  final String date;
-  final String month;
-  final String year;
+  final IconData icon;
+  final double iconSize;
+  final String subTitle;
+  final Widget title;
   const PickerWidgetCard(
-      {Key? key, required this.date, required this.month, required this.year})
+      {Key? key,
+      required this.icon,
+      required this.subTitle,
+      required this.title,
+      required this.iconSize})
       : super(key: key);
 
   @override
@@ -21,31 +25,27 @@ class PickerWidgetCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const Icon(
-            FontAwesomeIcons.calendar,
+          Icon(
+            icon,
             color: Colors.black,
-            size: 19,
+            size: iconSize,
+          ),
+          const SizedBox(
+            width: 15,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Due Date',
-                style: TextStyle(
+              Text(
+                subTitle,
+                style: const TextStyle(
                     fontFamily: 'Metropolis',
                     color: Color(0xffADADAD),
                     fontSize: 14),
               ),
-              Text(
-                '$date $month $year',
-                style: const TextStyle(
-                    fontFamily: 'Metropolis',
-                    color: Colors.black,
-                    fontSize: 15),
-              ),
+              title,
             ],
           )
         ],
