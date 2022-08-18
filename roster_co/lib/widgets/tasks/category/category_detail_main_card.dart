@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:roster_co/widgets/task_category_card_widget.dart';
+import 'package:roster_co/widgets/task_details_card.dart';
 
 // ignore: must_be_immutable
 class CategoryDrawableCard extends StatefulWidget {
@@ -102,7 +102,7 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
                       shrinkWrap: true,
                       physics: const BouncingScrollPhysics(),
                       itemBuilder: (BuildContext context, index) {
-                        return TaskCategoryCard(
+                        return CategoryDetailsCard(
                           index: index,
                         );
                       },

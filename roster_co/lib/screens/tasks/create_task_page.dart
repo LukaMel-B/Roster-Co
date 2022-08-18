@@ -48,6 +48,7 @@ class CreateTaskPage extends StatelessWidget {
                       ],
                     ),
                     six2,
+                    six1,
                     const CreatePageTitle(title: 'Description'),
                     six1,
                     TextFormField(
