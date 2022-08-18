@@ -42,3 +42,5 @@ var boxDecoration = BoxDecoration(
     width: 1.5,
   ),
 );
+
+var sPhysics = const BouncingScrollPhysics();

@@ -17,6 +17,7 @@ class TaskDetailsScreen extends StatelessWidget {
         child: Container(
           color: Colors.white,
           child: ListView(
+            physics: sPhysics,
             children: [
               Center(
                 child: Text(

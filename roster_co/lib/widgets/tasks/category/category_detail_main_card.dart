@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:roster_co/constants/task_details_consts.dart';
 import 'package:roster_co/widgets/tasks/task_details_card.dart';
 
 // ignore: must_be_immutable
@@ -100,7 +101,7 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
                     height: (MediaQuery.of(context).size.height) - 90,
                     child: ListView.builder(
                       shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
+                      physics: sPhysics,
                       itemBuilder: (BuildContext context, index) {
                         return CategoryDetailsCard(
                           index: index,
@@ -119,28 +120,26 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
   }
 
   Future datePicker() async {
-    pickedDate = await showDatePicker(
-      context: context,
-      initialDate: todayDate,
-      firstDate: todayDate,
-      lastDate: DateTime(2100),
-      builder: (context, child) {
-        return Theme(
-          data: ThemeData(
-              fontFamily: 'Metropolis',
-              primaryColor: const Color.fromARGB(255, 0, 0, 0),
-              colorScheme: const ColorScheme.light(
-                  primary: Color.fromARGB(255, 0, 0, 0)),
-              buttonTheme: const ButtonThemeData(
-                textTheme: ButtonTextTheme.primary,
-              )),
-          child: child!,
-        );
-      },
-    );
-    if (pickedDate.toString().isEmpty) {
-      pickedDate = todayDate;
-    }
+    pickedDate = (await showDatePicker(
+          context: context,
+          initialDate: todayDate,
+          firstDate: todayDate,
+          lastDate: DateTime(2100),
+          builder: (context, child) {
+            return Theme(
+              data: ThemeData(
+                  fontFamily: 'Metropolis',
+                  primaryColor: const Color.fromARGB(255, 0, 0, 0),
+                  colorScheme: const ColorScheme.light(
+                      primary: Color.fromARGB(255, 0, 0, 0)),
+                  buttonTheme: const ButtonThemeData(
+                    textTheme: ButtonTextTheme.primary,
+                  )),
+              child: child!,
+            );
+          },
+        )) ??
+        todayDate;
     setState(() {
       choosen = 'notnull';
       pickedDay = pickedDate!.day.toString();

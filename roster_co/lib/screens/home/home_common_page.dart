@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roster_co/constants/task_details_consts.dart';
 import 'package:roster_co/widgets/home/quotes_card.dart';
 
 class HomeCommonPage extends StatelessWidget {
@@ -12,7 +13,7 @@ class HomeCommonPage extends StatelessWidget {
       children: [
         Expanded(
           child: ListView(
-            physics: const BouncingScrollPhysics(),
+            physics: sPhysics,
             children: [
               const QuotesCard(),
               mainPageOption,

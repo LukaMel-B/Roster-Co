@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
+import 'package:roster_co/constants/task_details_consts.dart';
 import 'package:roster_co/constants/title_const_class.dart';
 import 'package:roster_co/screens/tasks/category_details.dart';
 import 'package:roster_co/widgets/tasks/create_task_datepick.dart';
@@ -27,7 +28,7 @@ class CreateTaskPage extends StatelessWidget {
               child: Form(
                 key: formKey,
                 child: ListView(
-                  physics: const BouncingScrollPhysics(),
+                  physics: sPhysics,
                   children: [
                     const CreatePageTitle(title: 'Task Title'),
                     six1,
