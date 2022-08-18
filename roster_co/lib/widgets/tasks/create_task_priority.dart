@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:roster_co/widgets/custom_card_widget.dart';
+import 'package:roster_co/widgets/home/custom_card_widget.dart';
 
 class PriorityPickerWidget extends StatefulWidget {
   const PriorityPickerWidget({Key? key}) : super(key: key);

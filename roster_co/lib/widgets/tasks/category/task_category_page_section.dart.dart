@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:roster_co/constants/category_title.dart';
 import 'package:roster_co/models/task.dart';
-import 'package:roster_co/widgets/task_category_card_widget.dart';
+import 'package:roster_co/widgets/tasks/category/task_category_card_widget.dart';
 
 // ignore: must_be_immutable
 class TaskCategoryWidget extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:roster_co/screens/events/events_screen.dart';
 import 'package:roster_co/screens/tasks/task_screen.dart';
-import 'package:roster_co/widgets/bottom_nav_widget.dart';
-import 'package:roster_co/widgets/floating_button.dart';
-import 'package:roster_co/widgets/quotes_card.dart';
+import 'package:roster_co/widgets/home/bottom_nav_widget.dart';
+import 'package:roster_co/widgets/home/floating_button.dart';
+import 'package:roster_co/widgets/home/quotes_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

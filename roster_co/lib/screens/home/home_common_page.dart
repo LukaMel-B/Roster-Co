@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roster_co/widgets/task_category_page_section.dart.dart';
-import 'package:roster_co/widgets/quotes_card.dart';
+import 'package:roster_co/widgets/home/quotes_card.dart';
 
 class HomeCommonPage extends StatelessWidget {
   final Widget mainPageOption;

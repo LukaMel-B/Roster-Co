@@ -1,17 +1,15 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/title_const_class.dart';
 import 'package:roster_co/screens/tasks/category_details.dart';
-import 'package:roster_co/widgets/create_task_datepick.dart';
-import 'package:roster_co/widgets/create_task_priority.dart';
-import 'package:roster_co/widgets/create_task_snooze_picker.dart';
-import 'package:roster_co/widgets/create_task_time_picker.dart';
-import 'package:roster_co/widgets/floating_button.dart';
-import 'package:roster_co/widgets/subtask_add_widget.dart';
+import 'package:roster_co/widgets/tasks/create_task_datepick.dart';
+import 'package:roster_co/widgets/tasks/create_task_priority.dart';
+import 'package:roster_co/widgets/tasks/create_task_snooze_picker.dart';
+import 'package:roster_co/widgets/tasks/create_task_time_picker.dart';
+import 'package:roster_co/widgets/home/floating_button.dart';
+import 'package:roster_co/widgets/tasks/subtask_add_widget.dart';
 
 class CreateTaskPage extends StatelessWidget {
   const CreateTaskPage({Key? key}) : super(key: key);

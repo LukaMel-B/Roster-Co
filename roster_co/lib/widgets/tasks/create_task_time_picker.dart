@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
-import 'package:roster_co/widgets/custom_card_widget.dart';
+import 'package:roster_co/widgets/home/custom_card_widget.dart';
 
 class TaskTimePicker extends StatefulWidget {
   const TaskTimePicker({Key? key}) : super(key: key);
@@ -42,24 +42,6 @@ class _TaskTimePickerState extends State<TaskTimePicker> {
   }
 
   Future timePicker() async {
-    // pickedTime = (await showDatePicker(
-    //   context: context,
-    //   initialDate: todayDay,
-    //   firstDate: todayDay,
-    //   lastDate: DateTime(2100),
-    //   builder: (context, child) {
-    //     return Theme(
-    //       data: ThemeData(
-    //           fontFamily: 'Metropolis',
-    //           primaryColor: const Color.fromARGB(255, 0, 0, 0),
-    //           colorScheme: const ColorScheme.light(
-    //               primary: Color.fromARGB(255, 0, 0, 0)),
-    //           buttonTheme:
-    //               const ButtonThemeData(textTheme: ButtonTextTheme.primary)),
-    //       child: child!,
-    //     );
-    //   },
-    // ))!;
     pickedTime = (await showTimePicker(
             context: context,
             initialTime: TimeOfDay.now(),

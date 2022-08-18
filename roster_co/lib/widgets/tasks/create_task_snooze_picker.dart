@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roster_co/widgets/custom_card_widget.dart';
+import 'package:roster_co/widgets/home/custom_card_widget.dart';
 
 class SnoozePickerWidget extends StatefulWidget {
   const SnoozePickerWidget({Key? key}) : super(key: key);

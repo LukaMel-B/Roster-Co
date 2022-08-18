@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roster_co/widgets/task_category_page_section.dart.dart';
+import 'package:roster_co/widgets/tasks/category/task_category_page_section.dart.dart';
 
 class MainTaskScreen extends StatelessWidget {
   const MainTaskScreen({Key? key}) : super(key: key);

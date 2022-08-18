@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:roster_co/constants/category_title.dart';
 import 'package:roster_co/screens/tasks/create_task_page.dart';
-import 'package:roster_co/widgets/category_appbar.dart';
-import 'package:roster_co/widgets/category_detail_main_card.dart';
-import 'package:roster_co/widgets/floating_button.dart';
+import 'package:roster_co/widgets/tasks/category/category_appbar.dart';
+import 'package:roster_co/widgets/tasks/category/category_detail_main_card.dart';
+import 'package:roster_co/widgets/home/floating_button.dart';
 
 // ignore: must_be_immutable
 class CategoryDetailsScreen extends StatelessWidget {
