@@ -6,7 +6,7 @@ class MainEventScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [Text('data')],
+      children: const [Text('data')],
     );
   }
 }

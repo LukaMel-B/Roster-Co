@@ -5,7 +5,6 @@ import 'package:roster_co/constants/category_title.dart';
 import 'package:roster_co/constants/color_consts.dart';
 import 'package:roster_co/constants/icon_constants.dart';
 import 'package:roster_co/screens/tasks/%20task_details_page.dart';
-import 'package:roster_co/screens/tasks/category_details.dart';
 
 // ignore: must_be_immutable
 class CategoryDetailsCard extends StatelessWidget {

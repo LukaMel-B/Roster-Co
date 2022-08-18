@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roster_co/screens/tasks/category_details.dart';
 
 class CustomFloatingButton extends StatefulWidget {
   final Widget page;

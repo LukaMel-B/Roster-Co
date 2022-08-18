@@ -75,6 +75,5 @@ class _AddedSubTasksState extends State<AddedSubTasks> {
         ),
       ));
     setState(() => ++_count);
-    print(_controllers);
   }
 }
