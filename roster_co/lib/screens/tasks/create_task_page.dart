@@ -31,14 +31,14 @@ class CreateTaskPage extends StatelessWidget {
                   physics: sPhysics,
                   children: [
                     const CreatePageTitle(title: 'Task Title'),
-                    six1,
+                    sixh_1,
                     TextFormField(
                       style: txStyle,
                       validator: validator,
                       controller: titleController,
                       decoration: textfieldDeco,
                     ),
-                    six2,
+                    sixh_2,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -46,10 +46,10 @@ class CreateTaskPage extends StatelessWidget {
                         PriorityPickerWidget(),
                       ],
                     ),
-                    six2,
-                    six1,
+                    sixh_2,
+                    sixh_1,
                     const CreatePageTitle(title: 'Description'),
-                    six1,
+                    sixh_1,
                     TextFormField(
                       style: txStyle,
                       validator: validator,
@@ -58,10 +58,10 @@ class CreateTaskPage extends StatelessWidget {
                       keyboardType: TextInputType.multiline,
                       maxLines: 6,
                     ),
-                    six2,
-                    six1,
+                    sixh_2,
+                    sixh_1,
                     const CreatePageTitle(title: 'Time'),
-                    six1,
+                    sixh_1,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -69,9 +69,9 @@ class CreateTaskPage extends StatelessWidget {
                         SnoozePickerWidget(),
                       ],
                     ),
-                    six2,
+                    sixh_2,
                     const AddedSubTasks(),
-                    six3,
+                    sixh_6,
                   ],
                 ),
               ),

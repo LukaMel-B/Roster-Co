@@ -17,13 +17,29 @@ final textfieldDeco = InputDecoration(
       fontFamily: 'Metropolis',
       color: Color(0xffADADAD),
     ));
-var six1 = const SizedBox(
+var sixh_1 = const SizedBox(
   height: 10,
 );
-var six2 = const SizedBox(
+var sixh_2 = const SizedBox(
   height: 20,
 );
-var six3 = const SizedBox(
+var sixh_3 = const SizedBox(
+  height: 30,
+);
+var sixh_6 = const SizedBox(
+  height: 60,
+);
+
+var sixw_1 = const SizedBox(
+  height: 10,
+);
+var sixw_2 = const SizedBox(
+  height: 20,
+);
+var sixw_3 = const SizedBox(
+  height: 30,
+);
+var sixw_6 = const SizedBox(
   height: 60,
 );
 var txStyle = const TextStyle(fontFamily: 'Metropolis', fontSize: 14);

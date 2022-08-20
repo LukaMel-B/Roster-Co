@@ -8,10 +8,13 @@ var appBarTaskDetails = AppBar(
     onPressed: () {
       Get.back();
     },
-    icon: const Icon(
-      Icons.keyboard_backspace_sharp,
-      color: Colors.black,
-      size: 36,
+    icon: const Padding(
+      padding: EdgeInsets.only(left: 20.0),
+      child: Icon(
+        Icons.keyboard_backspace_sharp,
+        color: Colors.black,
+        size: 36,
+      ),
     ),
   ),
   actions: const [
@@ -39,7 +42,7 @@ var boxDecoration = BoxDecoration(
   borderRadius: BorderRadius.circular(15),
   border: Border.all(
     color: const Color.fromARGB(255, 209, 209, 209),
-    width: 1.5,
+    width: 1,
   ),
 );
 
