@@ -18,21 +18,25 @@ class TaskDetailsScreen extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         child: Container(
           color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10),
-            child: ListView(
-              physics: sPhysics,
-              children: [
-                Center(
-                  child: Text(
-                    'Vocabulary Development',
-                    style: pageTitle,
-                  ),
+          child: ListView(
+            physics: sPhysics,
+            children: [
+              sixh_3,
+              Center(
+                child: Text(
+                  'Vocabulary Development',
+                  style: pageTitle,
                 ),
-                sixh_3,
-                const TaskDescriptionCard(),
-                sixh_1,
-                Row(
+              ),
+              sixh_3,
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30.0),
+                child: TaskDescriptionCard(),
+              ),
+              sixh_1,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
                     TaskShowDetailsCard(
@@ -49,26 +53,48 @@ class TaskDetailsScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                sixh_3,
-                sixh_1,
-                const Text(
+              ),
+              sixh_3,
+              sixh_1,
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30.0),
+                child: Text(
                   'Activity List',
                   style: TextStyle(fontSize: 21),
                 ),
-                const ActivityListCard(
-                  icon: Icons.bookmark_added_rounded,
-                  title: 'Activity 1',
-                ),
-                const ActivityListCard(
-                  icon: Icons.bookmark,
-                  title: 'Activity 2',
-                ),
-                const ActivityListCard(
-                  icon: Icons.bookmark,
-                  title: 'Activity 3',
-                )
-              ],
-            ),
+              ),
+              Column(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width - 50,
+                    child: const ActivityListCard(
+                      icon: Icons.bookmark_added_rounded,
+                      title: 'Activity 1',
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width - 50,
+                    child: const ActivityListCard(
+                      icon: Icons.bookmark,
+                      title: 'Activity 2',
+                    ),
+                  ),
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width - 50,
+                      child: const ActivityListCard(
+                        icon: Icons.bookmark,
+                        title: 'Activity 3',
+                      )),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width - 50,
+                    child: const ActivityListCard(
+                      icon: Icons.bookmark,
+                      title: 'Activity 3',
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

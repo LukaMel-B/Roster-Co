@@ -17,7 +17,7 @@ class CreateTaskPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: appBarTask,
       body: Container(
         color: Colors.white,
         child: Column(
@@ -87,9 +87,5 @@ class CreateTaskPage extends StatelessWidget {
           ),
           radius: 15),
     );
-  }
-
-  AppBar _buildAppBar() {
-    return appBar;
   }
 }

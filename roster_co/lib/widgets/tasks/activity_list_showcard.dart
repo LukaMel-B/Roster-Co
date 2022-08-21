@@ -42,7 +42,7 @@ class _ActivityListCardState extends State<ActivityListCard> {
                     : const Color(0xffDDF4A9),
               ),
               SizedBox(
-                width: 190,
+                width: 200,
                 child: Text(
                   widget.title,
                   style:
@@ -57,8 +57,7 @@ class _ActivityListCardState extends State<ActivityListCard> {
                       //color: Colors.yellow,
                       icon: Image.asset('assets/icons/menu_icon.png'),
                       shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(15))),
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
                       itemBuilder: (context) {
                         return menuItems.map((MenuItems menu) {
                           return PopupMenuItem(
@@ -73,13 +72,6 @@ class _ActivityListCardState extends State<ActivityListCard> {
                                   width: 20,
                                 ),
                                 Text(menu.title)
-                                // ListTile(
-                                //   leading: Icon(
-                                //     menu.icon,
-                                //     size: 25,
-                                //   ),
-                                //   title: Text(menu.title),
-                                // ),
                               ],
                             ),
                           );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:roster_co/constants/close_button.dart';
 
 late String validatorAlertText;
 final textfieldDeco = InputDecoration(
@@ -66,7 +66,7 @@ String? Function(String?) validator = ((value) {
   }
 });
 
-var appBar = AppBar(
+var appBarTask = AppBar(
   centerTitle: true,
   elevation: 0,
   backgroundColor: Colors.white,
@@ -76,16 +76,10 @@ var appBar = AppBar(
     style:
         TextStyle(fontFamily: 'Metropolis', color: Colors.black, fontSize: 19),
   ),
-  actions: [
-    TextButton(
-        onPressed: () {
-          Get.back();
-        },
-        child: const Icon(
-          Icons.close,
-          color: Colors.black,
-          size: 33,
-        ))
+  actions: const [
+    CustomCloseButton(
+      size: 33,
+    )
   ],
 );
 
@@ -110,3 +104,35 @@ class PickerTheme extends StatelessWidget {
         child: child);
   }
 }
+
+var homeAppbar = AppBar(
+  elevation: 0,
+  backgroundColor: Colors.white,
+  leading: Container(
+    padding: const EdgeInsets.all(8),
+    height: 45,
+    width: 40,
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Image.asset('assets/images/profile_pic.jpeg'),
+    ),
+  ),
+  title: const Text(
+    'Hi, Luha!',
+    style:
+        TextStyle(color: Colors.black, fontSize: 24, fontFamily: 'Metropolis'),
+  ),
+  actions: [
+    IconButton(
+      onPressed: () {},
+      icon: const Image(
+        image: AssetImage(
+          'assets/icons/menu_icon.png',
+        ),
+      ),
+    ),
+    const SizedBox(
+      width: 10,
+    ),
+  ],
+);

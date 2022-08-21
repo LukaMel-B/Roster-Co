@@ -64,9 +64,9 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: const CustomFloatingButton(
+      floatingActionButton: CustomFloatingButton(
           page: HomeScreen(),
-          icon: Icon(
+          icon: const Icon(
             FontAwesomeIcons.arrowRightLong,
             size: 25,
           ),

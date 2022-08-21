@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
+import 'package:roster_co/controllers/home_page_controller.dart';
 import 'package:roster_co/widgets/home/custom_card_widget.dart';
 
 class TaskDatePicker extends StatefulWidget {
@@ -12,16 +13,9 @@ class TaskDatePicker extends StatefulWidget {
 }
 
 class _TaskDatePickerState extends State<TaskDatePicker> {
-  var todayMonth = DateFormat.MMM().format(DateTime.now());
-  var todayDate = DateFormat.d().format(DateTime.now());
-  var todayYear = DateFormat.y().format(DateTime.now());
-  final todayDay = DateTime.now();
-  late String result;
-  String choosen = '';
-  late DateTime pickedDate;
+  final HomePageController _homePageController = Get.put(HomePageController());
   @override
   Widget build(BuildContext context) {
-    result = todayYear.substring(2, 4);
     return SizedBox(
       width: 170,
       height: 64,
@@ -35,35 +29,34 @@ class _TaskDatePickerState extends State<TaskDatePicker> {
           child: PickerWidgetCard(
             icon: FontAwesomeIcons.calendar,
             subTitle: 'Due Date',
-            title: Text(
-              '$todayDate $todayMonth $result',
-              style: const TextStyle(
-                  fontFamily: 'Metropolis', color: Colors.black, fontSize: 15),
-            ),
+            title: GetBuilder<HomePageController>(builder: ((_) {
+              return Text(
+                "${_homePageController.todayDate} ${_homePageController.todayMonth} ${_homePageController.result}",
+                style: const TextStyle(
+                    fontFamily: 'Metropolis',
+                    color: Colors.black,
+                    fontSize: 15),
+              );
+            })),
             iconSize: 19,
           )),
     );
   }
 
   Future datePicker() async {
-    pickedDate = (await showDatePicker(
+    _homePageController.pickedDate = (await showDatePicker(
             context: context,
-            initialDate: todayDay,
-            firstDate: todayDay,
+            initialDate: _homePageController.todayDay,
+            firstDate: _homePageController.todayDay,
             lastDate: DateTime(2100),
             builder: (context, child) {
               return PickerTheme(child!);
             })) ??
-        todayDay;
+        _homePageController.todayDay;
 
-    if (pickedDate.toString().isEmpty) {
-      pickedDate = todayDay;
+    if (_homePageController.pickedDate.toString().isEmpty) {
+      _homePageController.pickedDate = _homePageController.todayDay;
     }
-    setState(() {
-      choosen = 'notnull';
-      todayDate = DateFormat.d().format(pickedDate);
-      todayMonth = DateFormat.MMM().format(pickedDate);
-      todayYear = DateFormat.y().format(pickedDate);
-    });
+    _homePageController.updateDate();
   }
 }
