@@ -95,6 +95,9 @@ class PickerTheme extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
         data: ThemeData(
+            dialogTheme: const DialogTheme(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(25)))),
             fontFamily: 'Metropolis',
             primaryColor: const Color.fromARGB(255, 0, 0, 0),
             colorScheme:

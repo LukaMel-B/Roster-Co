@@ -85,13 +85,6 @@ class TaskDetailsScreen extends StatelessWidget {
                         icon: Icons.bookmark,
                         title: 'Activity 3',
                       )),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width - 50,
-                    child: const ActivityListCard(
-                      icon: Icons.bookmark,
-                      title: 'Activity 3',
-                    ),
-                  ),
                 ],
               ),
             ],

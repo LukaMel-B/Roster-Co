@@ -41,7 +41,8 @@ class HomeScreen extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             (selectPage == 'MainTaskScreen')
-                ? Get.bottomSheet(const CreateTaskCategory())
+                ? Get.bottomSheet(const CreateTaskCategory(),
+                    isScrollControlled: true)
                 : Get.bottomSheet(const CreatEventSheet());
           },
           shape:

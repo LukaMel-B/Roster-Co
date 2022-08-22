@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
+import 'package:get/get.dart';
+import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
+import 'package:roster_co/controllers/category_details_page_controller.dart';
 import 'package:roster_co/widgets/tasks/task_details_card.dart';
 
 // ignore: must_be_immutable
@@ -13,14 +15,8 @@ class CategoryDrawableCard extends StatefulWidget {
 }
 
 class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
-  DateTime todayDate = DateTime.now();
-  String todayMonth = DateFormat.MMM().format(DateTime.now());
-  DateTime? pickedDate;
-  String choosen = '';
-  late String pickedMonth;
-  late String pickedYear;
-  late String pickedDay;
-
+  final CategoryDetailsController _categoryController =
+      Get.put(CategoryDetailsController());
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
@@ -68,15 +64,17 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
                           ),
                         ),
                       ),
-                      Text(
-                        (choosen.isEmpty)
-                            ? '${todayDate.year} $todayMonth ${todayDate.day}'
-                            : '$pickedYear $todayMonth $pickedDay',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Metropolis',
-                        ),
-                      )
+                      GetBuilder<CategoryDetailsController>(builder: ((_) {
+                        return Text(
+                          (_categoryController.chosen.isEmpty)
+                              ? '${_categoryController.todayDate.year} ${_categoryController.todayMonth}${_categoryController.todayDate.day}'
+                              : '${_categoryController.pickedYear} ${_categoryController.todayMonth} ${_categoryController.pickedDay}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'Metropolis',
+                          ),
+                        );
+                      })),
                     ],
                   ),
                   // SliverList(
@@ -120,31 +118,16 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
   }
 
   Future datePicker() async {
-    pickedDate = (await showDatePicker(
+    _categoryController.pickedDate = (await showDatePicker(
           context: context,
-          initialDate: todayDate,
-          firstDate: todayDate,
+          initialDate: _categoryController.todayDate,
+          firstDate: _categoryController.todayDate,
           lastDate: DateTime(2100),
           builder: (context, child) {
-            return Theme(
-              data: ThemeData(
-                  fontFamily: 'Metropolis',
-                  primaryColor: const Color.fromARGB(255, 0, 0, 0),
-                  colorScheme: const ColorScheme.light(
-                      primary: Color.fromARGB(255, 0, 0, 0)),
-                  buttonTheme: const ButtonThemeData(
-                    textTheme: ButtonTextTheme.primary,
-                  )),
-              child: child!,
-            );
+            return PickerTheme(child!);
           },
         )) ??
-        todayDate;
-    setState(() {
-      choosen = 'notnull';
-      pickedDay = pickedDate!.day.toString();
-      todayMonth = DateFormat.MMM().format(pickedDate!);
-      pickedYear = pickedDate!.year.toString();
-    });
+        _categoryController.todayDate;
+    _categoryController.updateDate();
   }
 }
