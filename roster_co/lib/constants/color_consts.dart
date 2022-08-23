@@ -14,7 +14,7 @@ class ColorList {
     Color.fromARGB(255, 240, 240, 255),
   ];
   List iconColor = const [
-    Color(0xffFECA90),
+    Color.fromARGB(255, 255, 198, 133),
     Color(0xffFE8184),
     Color(0xff6DAEEA),
     Color.fromARGB(255, 164, 131, 240),

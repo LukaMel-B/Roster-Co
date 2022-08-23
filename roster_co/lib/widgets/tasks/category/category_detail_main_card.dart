@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
 import 'package:roster_co/controllers/category_details_page_controller.dart';
@@ -67,8 +68,8 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
                       GetBuilder<CategoryDetailsController>(builder: ((_) {
                         return Text(
                           (_categoryController.chosen.isEmpty)
-                              ? '${_categoryController.todayDate.year} ${_categoryController.todayMonth} ${_categoryController.todayDate.day}'
-                              : '${_categoryController.pickedYear} ${_categoryController.todayMonth} ${_categoryController.pickedDay}',
+                              ? ' ${_categoryController.todayMonth} ${_categoryController.todayDate.year}'
+                              : ' ${_categoryController.todayMonth} ${_categoryController.pickedYear}',
                           style: const TextStyle(
                             color: Colors.black,
                             fontFamily: 'Metropolis',
@@ -77,9 +78,11 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
                       })),
                     ],
                   ),
-                  SizedBox(
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 20),
                     height: (MediaQuery.of(context).size.height) - 90,
                     child: ListView.builder(
+                      scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: sPhysics,
                       itemBuilder: (BuildContext context, index) {
@@ -100,16 +103,24 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
   }
 
   Future datePicker() async {
-    _categoryController.pickedDate = (await showDatePicker(
+    _categoryController.pickedDate = (await showMonthPicker(
           context: context,
+          firstDate: DateTime(DateTime.now().year, 5),
+          lastDate: DateTime(DateTime.now().year + 50, 9),
           initialDate: _categoryController.todayDate,
-          firstDate: _categoryController.todayDate,
-          lastDate: DateTime(2100),
-          builder: (context, child) {
-            return PickerTheme(child!);
-          },
         )) ??
         _categoryController.todayDate;
     _categoryController.updateDate();
+    // _categoryController.pickedDate = (await showDatePicker(
+    //       context: context,
+    //       initialDate: _categoryController.todayDate,
+    //       firstDate: _categoryController.todayDate,
+    //       lastDate: DateTime(2100),
+    //       builder: (context, child) {
+    //         return PickerTheme(child!);
+    //       },
+    //     )) ??
+    //     _categoryController.todayDate;
+    // _categoryController.updateDate();
   }
 }

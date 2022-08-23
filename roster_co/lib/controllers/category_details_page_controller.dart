@@ -8,11 +8,9 @@ class CategoryDetailsController extends GetxController {
   String chosen = '';
   late String pickedMonth;
   late String pickedYear;
-  late String pickedDay;
 
   updateDate() {
     chosen = 'notnull';
-    pickedDay = pickedDate!.day.toString();
     todayMonth = DateFormat.MMM().format(pickedDate!);
     pickedYear = pickedDate!.year.toString();
     update();

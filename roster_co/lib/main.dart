@@ -15,7 +15,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: const WelcomeScreen(),
-      theme: ThemeData(fontFamily: 'Metropolis'),
+      theme: ThemeData(
+        fontFamily: 'Metropolis',
+        primaryColor: Colors.black,
+      ),
     );
   }
 }
