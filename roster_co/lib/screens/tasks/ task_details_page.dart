@@ -23,14 +23,18 @@ class TaskDetailsScreen extends GetView {
           child: ListView(
             physics: sPhysics,
             children: [
-              sixh_2,
               Center(
-                child: Text(
-                  title,
-                  style: pageTitle,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(top: 10.0, left: 30, right: 30),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    title,
+                    style: pageTitle,
+                  ),
                 ),
               ),
-              sixh_3,
+              sixh_2,
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0),
                 child: TaskDescriptionCard(),
@@ -57,7 +61,6 @@ class TaskDetailsScreen extends GetView {
                 ),
               ),
               sixh_3,
-              sixh_1,
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0),
                 child: Text(
@@ -71,7 +74,8 @@ class TaskDetailsScreen extends GetView {
                     width: MediaQuery.of(context).size.width - 50,
                     child: const ActivityListCard(
                       icon: Icons.bookmark_added_rounded,
-                      title: 'Activity 1',
+                      title:
+                          'hjghghghfvhghbhjbjhjhbjjhhjkjkbghgjhbzxbcjsdhfjshfjsafhjdsahfsadjfa',
                     ),
                   ),
                   SizedBox(

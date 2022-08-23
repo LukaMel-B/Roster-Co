@@ -33,8 +33,8 @@ var appBarTaskDetails = AppBar(
   ],
 );
 var pageTitle = const TextStyle(
-  fontSize: 25,
-  fontFamily: 'Metropolis',
+  fontSize: 27,
+  fontFamily: 'Metropolis Black',
   color: Colors.black,
 );
 

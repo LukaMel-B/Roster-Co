@@ -55,6 +55,9 @@ Future<IconData?> showIconPicker(
     FontAwesomeIcons.handHoldingDollar,
     FontAwesomeIcons.hashtag,
     FontAwesomeIcons.headphones,
+    FontAwesomeIcons.heart,
+    FontAwesomeIcons.heartCrack,
+    FontAwesomeIcons.heartPulse,
     FontAwesomeIcons.house,
     FontAwesomeIcons.houseChimneyMedical,
     FontAwesomeIcons.i,
@@ -123,59 +126,59 @@ Future<IconData?> showIconPicker(
   IconData? selectedIcon = defalutIcon;
 
   await showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(32.0))),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
-                Center(
-                    child: Text(
-                  'Pick an Icon',
-                )),
-                SizedBox(
-                  width: 20,
-                ),
-                CustomCloseButton(size: 35)
-              ],
-            ),
-            content: Container(
-              width: 300,
-              height: 300,
-              alignment: Alignment.center,
-              child: Scrollbar(
-                thickness: 5,
-                radius: const Radius.circular(10),
-                child: GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 60,
-                            childAspectRatio: 1 / 1,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10),
-                    itemCount: iconMenuItems.length,
-                    itemBuilder: (_, index) => Container(
-                          key: ValueKey(iconMenuItems[index].codePoint),
-                          padding: const EdgeInsets.all(10),
-                          child: Center(
-                            child: IconButton(
-                              color: const Color.fromARGB(255, 56, 56, 56),
-                              iconSize: 30,
-                              icon: Icon(
-                                iconMenuItems[index],
-                              ),
-                              onPressed: () {
-                                selectedIcon = iconMenuItems[index];
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ),
-                        )),
-              ),
-            ),
-          ));
+    context: context,
+    builder: (_) => AlertDialog(
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(32.0))),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: const [
+          Center(
+              child: Text(
+            'Pick an Icon',
+          )),
+          SizedBox(
+            width: 20,
+          ),
+          CustomCloseButton(size: 35)
+        ],
+      ),
+      content: Container(
+        width: 300,
+        height: 300,
+        alignment: Alignment.center,
+        child: Scrollbar(
+          thickness: 5,
+          radius: const Radius.circular(10),
+          child: GridView.builder(
+              physics: const BouncingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 60,
+                  childAspectRatio: 1 / 1,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10),
+              itemCount: iconMenuItems.length,
+              itemBuilder: (_, index) => Container(
+                    key: ValueKey(iconMenuItems[index].codePoint),
+                    padding: const EdgeInsets.all(10),
+                    child: Center(
+                      child: IconButton(
+                        color: const Color.fromARGB(255, 56, 56, 56),
+                        iconSize: 30,
+                        icon: Icon(
+                          iconMenuItems[index],
+                        ),
+                        onPressed: () {
+                          selectedIcon = iconMenuItems[index];
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ),
+                  )),
+        ),
+      ),
+    ),
+  );
 
   return selectedIcon;
 }

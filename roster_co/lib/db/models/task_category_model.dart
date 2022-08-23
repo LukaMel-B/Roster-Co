@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class TaskModel {
+class TaskCategoryModel {
   final IconData icon;
   final String title;
   final Color bgColor;
   final Color iconColor;
-  final String taskNo;
+  final int taskNo;
 
-  TaskModel(
+  TaskCategoryModel(
       {required this.icon,
       required this.taskNo,
       required this.title,

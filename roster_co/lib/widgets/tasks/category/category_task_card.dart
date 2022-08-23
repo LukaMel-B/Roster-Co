@@ -15,6 +15,11 @@ class CategoryTaskCard extends GetView {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.all(
+          10,
+        ),
+      ),
       onPressed: () {
         Get.to(
           () => TaskDetailsScreen(
@@ -45,39 +50,51 @@ class CategoryTaskCard extends GetView {
               height: 10,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Text(
-                    '3 done',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Metropolis',
-                      color: colors.iconColor[index],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Text(
+                        '3 done',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Metropolis',
+                          color: colors.iconColor[index],
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Text(
-                    '1 left',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Metropolis',
-                      color: colors.iconColor[index],
+                    const SizedBox(
+                      width: 10,
                     ),
-                  ),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Text(
+                        '1 left',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Metropolis',
+                          color: colors.iconColor[index],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    '23-12-22',
+                    style: TextStyle(color: colors.iconColor[index]),
+                  ),
+                )
               ],
             )
           ],

@@ -32,7 +32,6 @@ class _ActivityListCardState extends State<ActivityListCard> {
             ],
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Icon(
                 widget.icon,
@@ -41,12 +40,16 @@ class _ActivityListCardState extends State<ActivityListCard> {
                     ? const Color.fromARGB(255, 255, 187, 188)
                     : const Color(0xffDDF4A9),
               ),
-              SizedBox(
-                width: 200,
+              Container(
+                padding: const EdgeInsets.all(10),
+                width: MediaQuery.of(context).size.width - 165,
                 child: Text(
                   widget.title,
-                  style:
-                      const TextStyle(fontSize: 19, color: Color(0xffADADAD)),
+                  style: const TextStyle(
+                      fontSize: 16,
+                      letterSpacing: .5,
+                      color: Color.fromARGB(255, 152, 152, 152),
+                      fontFamily: 'Metropolis Medium'),
                 ),
               ),
               TextButton(
@@ -54,12 +57,13 @@ class _ActivityListCardState extends State<ActivityListCard> {
                 child: SizedBox(
                   height: 45,
                   child: PopupMenuButton(
-                      //color: Colors.yellow,
-                      icon: Image.asset('assets/icons/menu_icon.png'),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      itemBuilder: (context) {
-                        return menuItems.map((ActivityMenuItems menu) {
+                    //color: Colors.yellow,
+                    icon: Image.asset('assets/icons/menu_icon.png'),
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    itemBuilder: (context) {
+                      return menuItems.map(
+                        (ActivityMenuItems menu) {
                           return PopupMenuItem(
                             child: Row(
                               children: [
@@ -75,8 +79,10 @@ class _ActivityListCardState extends State<ActivityListCard> {
                               ],
                             ),
                           );
-                        }).toList();
-                      }),
+                        },
+                      ).toList();
+                    },
+                  ),
                 ),
               )
             ],
