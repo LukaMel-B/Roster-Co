@@ -7,12 +7,12 @@ import 'package:roster_co/constants/icon_constants.dart';
 import 'package:roster_co/screens/tasks/category_details.dart';
 
 // ignore: must_be_immutable
-class TaskCategoryCard extends StatelessWidget {
+class TaskCategoryCard extends GetView {
   final int index;
   TaskCategoryCard({Key? key, required this.index}) : super(key: key);
   TaskCategoryTitle title = TaskCategoryTitle();
   ColorList colors = ColorList();
-  IconLists taskIcons = IconLists();
+  HomePageIconLists taskIcons = HomePageIconLists();
   @override
   Widget build(BuildContext context) {
     return TextButton(

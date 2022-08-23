@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:roster_co/constants/category_title.dart';
 import 'package:roster_co/constants/color_consts.dart';
@@ -7,18 +6,20 @@ import 'package:roster_co/constants/icon_constants.dart';
 import 'package:roster_co/screens/tasks/%20task_details_page.dart';
 
 // ignore: must_be_immutable
-class CategoryDetailsCard extends StatelessWidget {
+class CategoryTaskCard extends GetView {
   final int index;
-  CategoryDetailsCard({Key? key, required this.index}) : super(key: key);
+  CategoryTaskCard({Key? key, required this.index}) : super(key: key);
   TaskCategoryTitle title = TaskCategoryTitle();
   ColorList colors = ColorList();
-  IconLists taskIcons = IconLists();
+  CategoryPageIconLists priorityIconList = CategoryPageIconLists();
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
         Get.to(
-          () => const TaskDetailsScreen(),
+          () => TaskDetailsScreen(
+            title: title.categoryTitleList[index],
+          ),
           transition: Transition.cupertino,
         );
       },
@@ -32,17 +33,19 @@ class CategoryDetailsCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            taskIcons.taskIconList[index],
-            const SizedBox(
-              height: 15,
-            ),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [priorityIconList.priorityIconList[index]]),
             Text(
               title.categoryTitleList[index],
               style: const TextStyle(
                   fontSize: 21, fontFamily: 'Metropolis', color: Colors.black),
             ),
+            const SizedBox(
+              height: 10,
+            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
                   padding: const EdgeInsets.all(10),
@@ -50,7 +53,7 @@ class CategoryDetailsCard extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
                   child: Text(
-                    '3 Tasks',
+                    '3 done',
                     style: TextStyle(
                       fontSize: 14,
                       fontFamily: 'Metropolis',
@@ -58,10 +61,23 @@ class CategoryDetailsCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                FaIcon(
-                  FontAwesomeIcons.arrowRightLong,
-                  color: colors.iconColor[index],
-                )
+                const SizedBox(
+                  width: 10,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Text(
+                    '1 left',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Metropolis',
+                      color: colors.iconColor[index],
+                    ),
+                  ),
+                ),
               ],
             )
           ],

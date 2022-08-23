@@ -10,7 +10,7 @@ import 'package:roster_co/widgets/home/bottom_nav_widget.dart';
 import 'package:roster_co/widgets/home/quotes_card.dart';
 import 'package:roster_co/widgets/tasks/category/create_category_widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends GetView {
   HomeScreen({Key? key}) : super(key: key);
   static ValueNotifier<int> selectedIndexNotifier = ValueNotifier(0);
   final pages = const [MainTaskScreen(), MainEventScreen()];

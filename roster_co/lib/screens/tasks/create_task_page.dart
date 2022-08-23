@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
 import 'package:roster_co/constants/title_const_class.dart';
@@ -12,7 +13,7 @@ import 'package:roster_co/widgets/tasks/create_task_time_picker.dart';
 import 'package:roster_co/widgets/home/floating_button.dart';
 import 'package:roster_co/widgets/tasks/subtask_add_widget.dart';
 
-class CreateTaskPage extends StatelessWidget {
+class CreateTaskPage extends GetView {
   const CreateTaskPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

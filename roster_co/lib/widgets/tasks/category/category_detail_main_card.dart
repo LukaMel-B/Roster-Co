@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
 import 'package:roster_co/controllers/category_details_page_controller.dart';
-import 'package:roster_co/widgets/tasks/task_details_card.dart';
+import 'package:roster_co/widgets/tasks/category/category_task_card.dart';
 
 // ignore: must_be_immutable
 class CategoryDrawableCard extends StatefulWidget {
@@ -67,7 +67,7 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
                       GetBuilder<CategoryDetailsController>(builder: ((_) {
                         return Text(
                           (_categoryController.chosen.isEmpty)
-                              ? '${_categoryController.todayDate.year} ${_categoryController.todayMonth}${_categoryController.todayDate.day}'
+                              ? '${_categoryController.todayDate.year} ${_categoryController.todayMonth} ${_categoryController.todayDate.day}'
                               : '${_categoryController.pickedYear} ${_categoryController.todayMonth} ${_categoryController.pickedDay}',
                           style: const TextStyle(
                             color: Colors.black,
@@ -77,31 +77,13 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
                       })),
                     ],
                   ),
-                  // SliverList(
-                  //   delegate: SliverChildBuilderDelegate(((context, index) {
-                  //     return SingleChildScrollView(
-                  //       child: Column(
-                  //         children: [
-                  //           Container(
-                  //             child: ListView.builder(
-                  //                 shrinkWrap: true,
-                  //                 physics: NeverScrollableScrollPhysics(),
-                  //                 itemBuilder: (BuildContext context, int index) {
-                  //                   return TaskCategoryCard(index: index);
-                  //                 }),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     );
-                  //   }), childCount: 3),
-                  // )
                   SizedBox(
                     height: (MediaQuery.of(context).size.height) - 90,
                     child: ListView.builder(
                       shrinkWrap: true,
                       physics: sPhysics,
                       itemBuilder: (BuildContext context, index) {
-                        return CategoryDetailsCard(
+                        return CategoryTaskCard(
                           index: index,
                         );
                       },

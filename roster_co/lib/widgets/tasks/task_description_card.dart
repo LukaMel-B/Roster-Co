@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
 
-class TaskDescriptionCard extends StatelessWidget {
+class TaskDescriptionCard extends GetView {
   const TaskDescriptionCard({Key? key}) : super(key: key);
 
   @override

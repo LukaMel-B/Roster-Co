@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CustomCloseButton extends StatelessWidget {
+class CustomCloseButton extends GetView {
   final double size;
   const CustomCloseButton({Key? key, required this.size}) : super(key: key);
 

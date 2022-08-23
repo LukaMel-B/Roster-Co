@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class TaskShowDetailsCard extends StatelessWidget {
+class TaskShowDetailsCard extends GetView {
   final String title;
   final String subTitle;
   final Color color;

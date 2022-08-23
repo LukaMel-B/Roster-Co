@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CategoryAppBar extends StatelessWidget {
+class CategoryAppBar extends GetView {
   const CategoryAppBar({Key? key}) : super(key: key);
 
   @override

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:roster_co/widgets/tasks/task_details_showcard.dart';
 
-class ActivitySectionWidget extends StatelessWidget {
+class ActivitySectionWidget extends GetView {
   const ActivitySectionWidget({Key? key}) : super(key: key);
 
   @override

@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:roster_co/constants/color_consts.dart';
 
 ColorList color = ColorList();
 
-class IconLists {
+class HomePageIconLists {
   List taskIconList = [
     FaIcon(
       FontAwesomeIcons.solidUser,
@@ -44,6 +46,47 @@ class IconLists {
     FaIcon(
       FontAwesomeIcons.solidUser,
       color: color.iconColor[9],
+    ),
+  ];
+}
+
+class CategoryPageIconLists {
+  List priorityIconList = const [
+    Icon(
+      CupertinoIcons.flame,
+      color: Colors.black,
+    ),
+    Icon(
+      Icons.thumb_up_off_alt_outlined,
+      color: Colors.black,
+    ),
+    Icon(
+      FontAwesomeIcons.temperatureEmpty,
+      color: Colors.black,
+    ),
+    Icon(
+      CupertinoIcons.flame,
+      color: Colors.black,
+    ),
+    Icon(
+      Icons.thumb_up_off_alt_outlined,
+      color: Colors.black,
+    ),
+    Icon(
+      FontAwesomeIcons.temperatureEmpty,
+      color: Colors.black,
+    ),
+    Icon(
+      CupertinoIcons.flame,
+      color: Colors.black,
+    ),
+    Icon(
+      Icons.thumb_up_off_alt_outlined,
+      color: Colors.black,
+    ),
+    Icon(
+      FontAwesomeIcons.temperatureEmpty,
+      color: Colors.black,
     ),
   ];
 }

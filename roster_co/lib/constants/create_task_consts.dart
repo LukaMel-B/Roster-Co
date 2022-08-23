@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:roster_co/constants/close_button.dart';
 
 late String validatorAlertText;
@@ -87,7 +88,7 @@ GlobalKey<FormState> formKey = GlobalKey();
 final titleController = TextEditingController();
 final descController = TextEditingController();
 
-class PickerTheme extends StatelessWidget {
+class PickerTheme extends GetView {
   final Widget child;
   const PickerTheme(this.child, {Key? key}) : super(key: key);
 

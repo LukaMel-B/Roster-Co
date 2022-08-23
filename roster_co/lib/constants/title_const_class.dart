@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class CreatePageTitle extends StatelessWidget {
+class CreatePageTitle extends GetView {
   final String title;
   const CreatePageTitle({Key? key, required this.title}) : super(key: key);
 

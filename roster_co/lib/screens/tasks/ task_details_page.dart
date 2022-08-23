@@ -1,14 +1,16 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
 import 'package:roster_co/widgets/tasks/activity_list_showcard.dart';
 import 'package:roster_co/widgets/tasks/task_description_card.dart';
 import 'package:roster_co/widgets/tasks/task_details_showcard.dart';
 
-class TaskDetailsScreen extends StatelessWidget {
-  const TaskDetailsScreen({Key? key}) : super(key: key);
+class TaskDetailsScreen extends GetView {
+  final String title;
+  const TaskDetailsScreen({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +23,10 @@ class TaskDetailsScreen extends StatelessWidget {
           child: ListView(
             physics: sPhysics,
             children: [
-              sixh_3,
+              sixh_2,
               Center(
                 child: Text(
-                  'Vocabulary Development',
+                  title,
                   style: pageTitle,
                 ),
               ),

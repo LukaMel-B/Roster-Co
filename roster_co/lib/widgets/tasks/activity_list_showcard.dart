@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roster_co/constants/pop_menu_class.dart';
+import 'package:roster_co/constants/popmenu_activity_class.dart';
 
 class ActivityListCard extends StatefulWidget {
   final String title;
@@ -59,7 +59,7 @@ class _ActivityListCardState extends State<ActivityListCard> {
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       itemBuilder: (context) {
-                        return menuItems.map((MenuItems menu) {
+                        return menuItems.map((ActivityMenuItems menu) {
                           return PopupMenuItem(
                             child: Row(
                               children: [

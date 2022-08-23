@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:roster_co/widgets/tasks/category/task_category_page_section.dart.dart';
 
-class MainTaskScreen extends StatelessWidget {
+class MainTaskScreen extends GetView {
   const MainTaskScreen({Key? key}) : super(key: key);
 
   @override

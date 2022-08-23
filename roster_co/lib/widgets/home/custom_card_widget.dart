@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class PickerWidgetCard extends StatelessWidget {
+class PickerWidgetCard extends GetView {
   final IconData icon;
   final double iconSize;
   final String subTitle;

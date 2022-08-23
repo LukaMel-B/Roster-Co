@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/state_manager.dart';
 import 'package:roster_co/constants/category_title.dart';
 import 'package:roster_co/models/task.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
 import 'package:roster_co/widgets/tasks/category/task_category_card_widget.dart';
 
 // ignore: must_be_immutable
-class TaskCategoryWidget extends StatelessWidget {
+class TaskCategoryWidget extends GetView {
   TaskCategoryWidget({Key? key}) : super(key: key);
   final task = [
     TaskModel(
