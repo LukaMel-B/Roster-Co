@@ -1,43 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:roster_co/constants/category_title.dart';
 import 'package:roster_co/constants/color_consts.dart';
-import 'package:roster_co/constants/icon_constants.dart';
+import 'package:roster_co/controllers/category_db_controller.dart';
 import 'package:roster_co/screens/tasks/category_details.dart';
 
 // ignore: must_be_immutable
-class TaskCategoryCard extends GetView {
+class TaskCategoryCard extends StatefulWidget {
   final int index;
-  TaskCategoryCard({Key? key, required this.index}) : super(key: key);
-  TaskCategoryTitle title = TaskCategoryTitle();
+  const TaskCategoryCard({Key? key, required this.index}) : super(key: key);
+
+  @override
+  State<TaskCategoryCard> createState() => _TaskCategoryCardState();
+}
+
+class _TaskCategoryCardState extends State<TaskCategoryCard> {
+  final CategoryDbController _categorList = CategoryDbController();
+
   ColorList colors = ColorList();
-  HomePageIconLists taskIcons = HomePageIconLists();
+  late Color iconColor;
+  late Color bgColor;
+
+  @override
+  void initState() {
+    _categorList.updateIndex();
+    bgColor = colors.bgColor[_categorList.index];
+    iconColor = colors.iconColor[_categorList.index];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
         Get.to(
-          () => CategoryDetailsScreen(),
+          () => CategoryDetailsScreen(
+            category: _categorList.categoryDb[widget.index].title,
+          ),
           transition: Transition.cupertino,
         );
       },
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: colors.bgColor[index],
+          color: bgColor,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            taskIcons.taskIconList[index],
+            Icon(
+              _categorList.categoryDb[widget.index].icon,
+              color: iconColor,
+            ),
             const SizedBox(
               height: 15,
             ),
             Text(
-              title.categoryTitleList[index],
+              _categorList.categoryDb[widget.index].title,
               style: const TextStyle(
                   fontSize: 21, fontFamily: 'Metropolis', color: Colors.black),
             ),
@@ -50,17 +71,17 @@ class TaskCategoryCard extends GetView {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
                   child: Text(
-                    '3 Tasks',
+                    '${_categorList.taskNumber} Tasks',
                     style: TextStyle(
                       fontSize: 14,
                       fontFamily: 'Metropolis',
-                      color: colors.iconColor[index],
+                      color: iconColor,
                     ),
                   ),
                 ),
                 FaIcon(
                   FontAwesomeIcons.arrowRightLong,
-                  color: colors.iconColor[index],
+                  color: iconColor,
                 )
               ],
             )

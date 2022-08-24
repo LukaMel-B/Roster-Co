@@ -1,7 +1,16 @@
+import 'package:hive_flutter/hive_flutter.dart';
+
+@HiveType(typeId: 3)
 class SubTaskModel {
-  final String task;
+  @HiveField(0)
+  final String subTask;
+
+  @HiveField(1)
   final bool isDone;
+
+  @HiveField(2)
   final bool isDelete;
 
-  SubTaskModel(this.task, this.isDone, this.isDelete);
+  SubTaskModel(
+      {required this.subTask, required this.isDone, required this.isDelete});
 }

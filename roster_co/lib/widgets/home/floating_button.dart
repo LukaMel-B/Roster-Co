@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CustomFloatingButton extends StatefulWidget {
-  final Widget page;
+  final Future<dynamic> page;
   final Widget icon;
   final double radius;
   const CustomFloatingButton(
@@ -18,10 +17,7 @@ class _CustomFloatingButtonState extends State<CustomFloatingButton> {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        Get.to(
-          () => widget.page,
-          transition: Transition.cupertino,
-        );
+        widget.page;
       },
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(widget.radius)),

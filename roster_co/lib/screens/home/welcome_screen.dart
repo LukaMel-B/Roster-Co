@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roster_co/screens/home/home_screen.dart';
-import 'package:roster_co/widgets/home/floating_button.dart';
 
 class WelcomeScreen extends GetView {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -65,13 +64,21 @@ class WelcomeScreen extends GetView {
           ),
         ),
       ),
-      floatingActionButton: CustomFloatingButton(
-          page: HomeScreen(),
-          icon: const Icon(
-            FontAwesomeIcons.arrowRightLong,
-            size: 25,
-          ),
-          radius: 15),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(
+            () => HomeScreen(),
+            transition: Transition.cupertino,
+          );
+        },
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        elevation: 25,
+        backgroundColor: Colors.black,
+        child: const Icon(
+          FontAwesomeIcons.arrowRightLong,
+          size: 25,
+        ),
+      ),
     );
   }
 }

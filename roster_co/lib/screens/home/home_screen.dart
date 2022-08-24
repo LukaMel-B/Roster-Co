@@ -18,7 +18,7 @@ class HomeScreen extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: _buildAppBar(),
+        appBar: homeAppbar,
         body: Container(
           color: Colors.white,
           child: ValueListenableBuilder(
@@ -54,9 +54,5 @@ class HomeScreen extends GetView {
             size: 40,
           ),
         ));
-  }
-
-  AppBar _buildAppBar() {
-    return homeAppbar;
   }
 }

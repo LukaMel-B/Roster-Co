@@ -4,11 +4,12 @@ import 'package:roster_co/constants/category_title.dart';
 import 'package:roster_co/screens/tasks/create_task_page.dart';
 import 'package:roster_co/widgets/tasks/category/category_appbar.dart';
 import 'package:roster_co/widgets/tasks/category/category_detail_main_card.dart';
-import 'package:roster_co/widgets/home/floating_button.dart';
 
 // ignore: must_be_immutable
 class CategoryDetailsScreen extends GetView {
-  CategoryDetailsScreen({Key? key}) : super(key: key);
+  final String category;
+
+  CategoryDetailsScreen({required this.category, Key? key}) : super(key: key);
   TaskCategoryTitle titleTask = TaskCategoryTitle();
   @override
   Widget build(BuildContext context) {
@@ -28,13 +29,23 @@ class CategoryDetailsScreen extends GetView {
           ),
         ),
       ),
-      floatingActionButton: const CustomFloatingButton(
-          page: CreateTaskPage(),
-          icon: Icon(
-            Icons.add_rounded,
-            size: 40,
-          ),
-          radius: 10),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(
+            () => CreateTaskPage(
+              category: category,
+            ),
+            transition: Transition.cupertino,
+          );
+        },
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        elevation: 25,
+        backgroundColor: Colors.black,
+        child: const Icon(
+          Icons.add_rounded,
+          size: 40,
+        ),
+      ),
     );
   }
 }
