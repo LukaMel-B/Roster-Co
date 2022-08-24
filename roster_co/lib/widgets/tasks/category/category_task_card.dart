@@ -16,7 +16,7 @@ class CategoryTaskCard extends GetView {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
-        padding: EdgeInsets.all(
+        padding: const EdgeInsets.all(
           10,
         ),
       ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
-import 'package:roster_co/controllers/home_page_controller.dart';
+import 'package:roster_co/controllers/task_picker_controller.dart';
 import 'package:roster_co/widgets/home/custom_card_widget.dart';
 
 class TaskDatePicker extends StatefulWidget {
@@ -13,7 +13,8 @@ class TaskDatePicker extends StatefulWidget {
 }
 
 class _TaskDatePickerState extends State<TaskDatePicker> {
-  final HomePageController _homePageController = Get.put(HomePageController());
+  final TaskPickerController _homePageController =
+      Get.put(TaskPickerController());
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,7 +30,7 @@ class _TaskDatePickerState extends State<TaskDatePicker> {
           child: PickerWidgetCard(
             icon: FontAwesomeIcons.calendar,
             subTitle: 'Due Date',
-            title: GetBuilder<HomePageController>(builder: ((_) {
+            title: GetBuilder<TaskPickerController>(builder: ((_) {
               return Text(
                 "${_homePageController.todayDate} ${_homePageController.todayMonth} ${_homePageController.result}",
                 style: const TextStyle(

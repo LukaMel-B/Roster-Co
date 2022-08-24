@@ -21,7 +21,8 @@ class TaskDetailsScreen extends GetView {
         child: Container(
           color: Colors.white,
           child: ListView(
-            physics: sPhysics,
+            physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics()),
             children: [
               Center(
                 child: Padding(
