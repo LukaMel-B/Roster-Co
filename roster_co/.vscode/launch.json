@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "name": "Flutter (lib/widgets/tasks/category/task_category_card_widget.dart)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/widgets/tasks/category/task_category_card_widget.dart"
+    }
+  ]
+}

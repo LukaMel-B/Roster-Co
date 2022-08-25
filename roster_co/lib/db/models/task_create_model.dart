@@ -1,5 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:roster_co/db/models/sub_task_model.dart';
+part 'task_create_model.g.dart';
 
 @HiveType(typeId: 2)
 class CreateTaskModel {

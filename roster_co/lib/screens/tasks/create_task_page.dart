@@ -14,7 +14,8 @@ import 'package:roster_co/widgets/tasks/subtask_add_widget.dart';
 
 class CreateTaskPage extends GetView {
   final String category;
-  const CreateTaskPage({required this.category, Key? key}) : super(key: key);
+  CreateTaskPage({required this.category, Key? key}) : super(key: key);
+  GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

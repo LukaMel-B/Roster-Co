@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:roster_co/db/functions/category_db_functions.dart';
+import 'package:roster_co/db/models/task_category_model.dart';
 import 'package:roster_co/screens/home/welcome_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(TaskCategoryModelAdapter());
+  await Hive.openBox<TaskCategoryModel>('category_db');
+  await getAllCategorys();
+  //clearAllCategorys();
   runApp(const MyApp());
 }
 

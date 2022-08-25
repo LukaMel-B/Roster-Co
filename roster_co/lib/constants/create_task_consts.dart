@@ -4,6 +4,10 @@ import 'package:roster_co/constants/close_button.dart';
 
 late String validatorAlertText;
 final textfieldDeco = InputDecoration(
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Color(0xffCBCBCB), width: .8),
+    ),
     contentPadding: const EdgeInsets.all(19),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(15),
@@ -18,8 +22,16 @@ final textfieldDeco = InputDecoration(
       fontFamily: 'Metropolis',
       color: Color(0xffADADAD),
     ));
+var downIcon = const Icon(
+  Icons.keyboard_arrow_down_rounded,
+  color: Colors.black,
+  size: 24,
+);
 var sixh_1 = const SizedBox(
   height: 10,
+);
+var sixw_8 = const SizedBox(
+  width: 80,
 );
 var sixh_2 = const SizedBox(
   height: 20,
@@ -84,7 +96,6 @@ var appBarTask = AppBar(
   ],
 );
 
-GlobalKey<FormState> formKey = GlobalKey();
 final titleController = TextEditingController();
 final descController = TextEditingController();
 

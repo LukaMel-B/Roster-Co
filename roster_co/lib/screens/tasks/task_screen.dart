@@ -19,7 +19,7 @@ class MainTaskScreen extends GetView {
                 color: Colors.black, fontSize: 21, fontFamily: 'Metropolis'),
           ),
         ),
-        const SizedBox(height: 400, child: TaskCategoryWidget())
+        SizedBox(height: 400, child: TaskCategoryWidget())
       ],
     );
   }

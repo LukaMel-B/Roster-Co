@@ -1,24 +1,31 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
 
+import 'dart:developer';
+
+import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:roster_co/controllers/category_db_controller.dart';
 import 'package:roster_co/db/models/task_category_model.dart';
 
-CategoryDbController categoryList = CategoryDbController();
+CategoryDbController categoryList = Get.put(CategoryDbController());
 
 Future<void> addCategory(TaskCategoryModel value) async {
   final categoryDb = await Hive.openBox<TaskCategoryModel>('category_db');
   final id = await categoryDb.add(value);
   value.idCategory = id;
   await categoryDb.put(id, value);
-  categoryList.addToList(value);
-  getAllCategorys();
+  log("From add ${categoryDb.toString()}");
+  await getAllCategorys();
 }
 
 Future<void> getAllCategorys() async {
   final categoryDb = await Hive.openBox<TaskCategoryModel>('category_db');
+
   categoryList.categoryDb.clear();
+  log(categoryDb.toString());
   categoryList.addAllToList(categoryDb.values);
+  log(categoryList.categoryDb.toString());
+
   // CategoryListNotifier.value.sort((a, b) {
   //   return a.rollNo.toLowerCase().compareTo(b.rollNo.toLowerCase());
   // });
