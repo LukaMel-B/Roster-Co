@@ -24,7 +24,7 @@ class _CreateTaskCategoryState extends State<CreateTaskCategory> {
   GlobalKey<FormState> formKey = GlobalKey();
   final CategoryDbController _categoryDbController =
       Get.put(CategoryDbController());
-  IconData? _selectedIcon;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,40 +61,41 @@ class _CreateTaskCategoryState extends State<CreateTaskCategory> {
                     decoration: textfieldDeco,
                   ),
                   Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: btDeco,
-                    child: TextButton(
-                      onPressed: () async {
-                        final IconData? result = await showIconPicker(
-                            context: context, defalutIcon: _selectedIcon);
-                        setState(() {
-                          _selectedIcon = result;
-                        });
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          (_selectedIcon == null)
-                              ? Image.asset(
-                                  'assets/icons/add_icon.png',
-                                  height: 30,
-                                )
-                              : Icon(
-                                  _selectedIcon,
-                                  size: 30,
-                                  color: Colors.black,
-                                ),
-                          (_selectedIcon == null)
-                              ? const CustomBottomSheetText(
-                                  text: 'Pick the icon')
-                              : const CustomBottomSheetText(
-                                  text: 'Picked Icon'),
-                          sixw_8,
-                          downIcon,
-                        ],
-                      ),
-                    ),
-                  ),
+                      padding: const EdgeInsets.all(10),
+                      decoration: btDeco,
+                      child: GetBuilder<CategoryDbController>(builder: ((_) {
+                        return TextButton(
+                          onPressed: () async {
+                            final IconData? result = await showIconPicker(
+                                context: context,
+                                defalutIcon:
+                                    _categoryDbController.selectedIcon);
+                            _categoryDbController.updateIcon(result!);
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              (_categoryDbController.selectedIcon == null)
+                                  ? Image.asset(
+                                      'assets/icons/add_icon.png',
+                                      height: 30,
+                                    )
+                                  : Icon(
+                                      _categoryDbController.selectedIcon,
+                                      size: 30,
+                                      color: Colors.black,
+                                    ),
+                              (_categoryDbController.selectedIcon == null)
+                                  ? const CustomBottomSheetText(
+                                      text: 'Pick the icon')
+                                  : const CustomBottomSheetText(
+                                      text: 'Picked Icon'),
+                              sixw_8,
+                              downIcon,
+                            ],
+                          ),
+                        );
+                      }))),
                   const TitlePadding(title: 'Description'),
                   TextFormField(
                     style: txStyle,
@@ -123,7 +124,8 @@ class _CreateTaskCategoryState extends State<CreateTaskCategory> {
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               {
-                                if (_selectedIcon == null) {
+                                if (_categoryDbController.selectedIcon ==
+                                    null) {
                                   showIconAlert(context);
                                 } else {
                                   onButtonPress();
@@ -155,7 +157,7 @@ class _CreateTaskCategoryState extends State<CreateTaskCategory> {
   void onButtonPress() async {
     _categoryDbController.updateIndex();
     final category = TaskCategoryModel(
-        icon: _selectedIcon!.codePoint,
+        icon: _categoryDbController.selectedIcon!.codePoint,
         title: nameController.text.trim(),
         description: desController.text.trim(),
         bgColor: _categoryDbController
@@ -166,6 +168,7 @@ class _CreateTaskCategoryState extends State<CreateTaskCategory> {
     await getAllCategorys();
 
     Get.back();
+    _categoryDbController.resetIcon();
   }
 }
 

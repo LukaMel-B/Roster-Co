@@ -5,12 +5,12 @@ import 'package:roster_co/db/functions/task_db_functions.dart';
 
 class CategoryDbController extends GetxController {
   List<TaskCategoryModel> categoryDb = [];
+  IconData? selectedIcon;
   List<Color> bgColorDb = [];
   List<Color> iconColorDb = [];
   int bgColorIndex = -1;
   int iconColorIndex = -1;
   String taskNumber = '0';
-  int index = -1;
 
   List bgColorList = const [
     0xffFEF7E9,
@@ -37,23 +37,29 @@ class CategoryDbController extends GetxController {
     0xff7676E8,
   ];
 
+  resetIcon() {
+    selectedIcon = null;
+    update();
+  }
+
+  updateIcon(IconData result) {
+    selectedIcon = result;
+    update();
+  }
+
   addToList(TaskCategoryModel value) {
     categoryDb.add(value);
     update();
   }
 
   updateIndex() {
-    if (index < 9) {
-      index++;
+    if (iconColorIndex < 9) {
       iconColorIndex++;
       bgColorIndex++;
     } else {
-      index = 0;
       bgColorIndex = 0;
       iconColorIndex = 0;
     }
-    print(index.toString());
-    print(bgColorIndex.toString());
     update();
   }
 
@@ -65,12 +71,5 @@ class CategoryDbController extends GetxController {
   addAllToList(Iterable<TaskCategoryModel> values) {
     categoryDb.addAll(values);
     update();
-  }
-
-  @override
-  void onInit() {
-    // updateIndex();
-
-    super.onInit();
   }
 }

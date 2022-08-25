@@ -9,7 +9,7 @@ class QuotesCard extends GetView {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 10,
+        vertical: 5,
       ),
       child: Container(
         height: 110,

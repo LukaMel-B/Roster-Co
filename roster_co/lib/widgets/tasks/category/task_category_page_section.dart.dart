@@ -17,7 +17,6 @@ class TaskCategoryWidget extends StatelessWidget {
         child: GetBuilder<CategoryDbController>(
             //  init: CategoryDbController(),
             builder: ((_) {
-          print(_categorList.categoryDb);
           return (_categorList.categoryDb.isEmpty)
               ? const Center(child: Text('No task categories'))
               : GridView.builder(

@@ -11,7 +11,7 @@ Future<void> main() async {
   Hive.registerAdapter(TaskCategoryModelAdapter());
   await Hive.openBox<TaskCategoryModel>('category_db');
   await getAllCategorys();
-  clearAllCategorys();
+  //clearAllCategorys();
   runApp(const MyApp());
 }
 

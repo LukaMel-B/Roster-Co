@@ -17,6 +17,7 @@ class TaskDbController extends GetxController {
       final month = searchMonth.toLowerCase();
       return categoryLower.contains(category) && dateMonth.contains(month);
     }).toList();
+
     update();
   }
 
