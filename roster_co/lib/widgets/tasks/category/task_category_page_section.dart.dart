@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -41,8 +39,7 @@ class TaskCategoryWidget extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: Color(_categorList.bgColorList[
-                              _categorList.categoryDb[index].bgColor]),
+                          color: Color(_categorList.categoryDb[index].bgColor),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Column(
@@ -55,8 +52,8 @@ class TaskCategoryWidget extends StatelessWidget {
                                 fontPackage: 'font_awesome_flutter',
                                 fontFamily: 'FontAwesomeSolid',
                               ),
-                              color: Color(_categorList.iconColorList[
-                                  _categorList.categoryDb[index].iconColor]),
+                              color: Color(
+                                  _categorList.categoryDb[index].iconColor),
                             ),
                             const SizedBox(
                               height: 15,
@@ -81,17 +78,15 @@ class TaskCategoryWidget extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: 'Metropolis',
-                                      color: Color(_categorList.iconColorList[
-                                          _categorList
-                                              .categoryDb[index].iconColor]),
+                                      color: Color(_categorList
+                                          .categoryDb[index].iconColor),
                                     ),
                                   ),
                                 ),
                                 FaIcon(
                                   FontAwesomeIcons.arrowRightLong,
-                                  color: Color(_categorList.iconColorList[
-                                      _categorList
-                                          .categoryDb[index].iconColor]),
+                                  color: Color(
+                                      _categorList.categoryDb[index].iconColor),
                                 )
                               ],
                             )

@@ -11,7 +11,7 @@ Future<void> main() async {
   Hive.registerAdapter(TaskCategoryModelAdapter());
   await Hive.openBox<TaskCategoryModel>('category_db');
   await getAllCategorys();
-  //clearAllCategorys();
+  clearAllCategorys();
   runApp(const MyApp());
 }
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const WelcomeScreen(),
+      home: WelcomeScreen(),
       theme: ThemeData(
         fontFamily: 'Metropolis',
         primaryColor: Colors.black,

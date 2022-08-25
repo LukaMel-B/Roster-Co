@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:roster_co/controllers/category_db_controller.dart';
+import 'package:roster_co/db/functions/category_db_functions.dart';
+import 'package:roster_co/db/models/task_category_model.dart';
 import 'package:roster_co/screens/home/home_screen.dart';
 
 class WelcomeScreen extends GetView {
-  const WelcomeScreen({Key? key}) : super(key: key);
-
+  WelcomeScreen({Key? key}) : super(key: key);
+  final CategoryDbController _categorList = Get.put(CategoryDbController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +69,8 @@ class WelcomeScreen extends GetView {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.to(
+          defaultCategory();
+          Get.offAll(
             () => HomeScreen(),
             transition: Transition.cupertino,
           );
@@ -80,5 +84,35 @@ class WelcomeScreen extends GetView {
         ),
       ),
     );
+  }
+
+  defaultCategory() async {
+    _categorList.updateIndex();
+    final categoryPersonal = TaskCategoryModel(
+        icon: FontAwesomeIcons.solidUser.codePoint,
+        title: 'Personal',
+        description: 'Here i update my personal related tasks',
+        bgColor: _categorList.bgColorList[_categorList.bgColorIndex],
+        iconColor: _categorList.iconColorList[_categorList.iconColorIndex]);
+    await addCategory(categoryPersonal);
+    await getAllCategorys();
+    _categorList.updateIndex();
+    final categoryWork = TaskCategoryModel(
+        icon: FontAwesomeIcons.briefcase.codePoint,
+        title: 'Work',
+        description: 'Here i update my work related tasks',
+        bgColor: _categorList.bgColorList[_categorList.bgColorIndex],
+        iconColor: _categorList.iconColorList[_categorList.iconColorIndex]);
+    await addCategory(categoryWork);
+    await getAllCategorys();
+    _categorList.updateIndex();
+    final categoryHealth = TaskCategoryModel(
+        icon: FontAwesomeIcons.solidHeart.codePoint,
+        title: 'Health',
+        description: 'Here i update my health related tasks',
+        bgColor: _categorList.bgColorList[_categorList.bgColorIndex],
+        iconColor: _categorList.iconColorList[_categorList.iconColorIndex]);
+    await addCategory(categoryHealth);
+    await getAllCategorys();
   }
 }

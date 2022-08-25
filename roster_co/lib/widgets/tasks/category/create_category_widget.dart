@@ -22,7 +22,8 @@ class _CreateTaskCategoryState extends State<CreateTaskCategory> {
   TextEditingController nameController = TextEditingController();
   TextEditingController desController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
-  CategoryDbController _categoryDbController = Get.put(CategoryDbController());
+  final CategoryDbController _categoryDbController =
+      Get.put(CategoryDbController());
   IconData? _selectedIcon;
   @override
   Widget build(BuildContext context) {
@@ -157,8 +158,10 @@ class _CreateTaskCategoryState extends State<CreateTaskCategory> {
         icon: _selectedIcon!.codePoint,
         title: nameController.text.trim(),
         description: desController.text.trim(),
-        bgColor: _categoryDbController.bgColorIndex,
-        iconColor: _categoryDbController.iconColorIndex);
+        bgColor: _categoryDbController
+            .bgColorList[_categoryDbController.bgColorIndex],
+        iconColor: _categoryDbController
+            .iconColorList[_categoryDbController.iconColorIndex]);
     await addCategory(category);
     await getAllCategorys();
 

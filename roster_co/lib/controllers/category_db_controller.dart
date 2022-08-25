@@ -43,7 +43,7 @@ class CategoryDbController extends GetxController {
   }
 
   updateIndex() {
-    if (index < 10) {
+    if (index < 9) {
       index++;
       iconColorIndex++;
       bgColorIndex++;
@@ -52,6 +52,8 @@ class CategoryDbController extends GetxController {
       bgColorIndex = 0;
       iconColorIndex = 0;
     }
+    print(index.toString());
+    print(bgColorIndex.toString());
     update();
   }
 
