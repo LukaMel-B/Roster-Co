@@ -87,32 +87,34 @@ class WelcomeScreen extends GetView {
   }
 
   defaultCategory() async {
-    _categorList.updateIndex();
-    final categoryPersonal = TaskCategoryModel(
-        icon: FontAwesomeIcons.solidUser.codePoint,
-        title: 'Personal',
-        description: 'Here i update my personal related tasks',
-        bgColor: _categorList.bgColorList[_categorList.bgColorIndex],
-        iconColor: _categorList.iconColorList[_categorList.iconColorIndex]);
-    await addCategory(categoryPersonal);
-    await getAllCategorys();
-    _categorList.updateIndex();
-    final categoryWork = TaskCategoryModel(
-        icon: FontAwesomeIcons.briefcase.codePoint,
-        title: 'Work',
-        description: 'Here i update my work related tasks',
-        bgColor: _categorList.bgColorList[_categorList.bgColorIndex],
-        iconColor: _categorList.iconColorList[_categorList.iconColorIndex]);
-    await addCategory(categoryWork);
-    await getAllCategorys();
-    _categorList.updateIndex();
-    final categoryHealth = TaskCategoryModel(
-        icon: FontAwesomeIcons.solidHeart.codePoint,
-        title: 'Health',
-        description: 'Here i update my health related tasks',
-        bgColor: _categorList.bgColorList[_categorList.bgColorIndex],
-        iconColor: _categorList.iconColorList[_categorList.iconColorIndex]);
-    await addCategory(categoryHealth);
-    await getAllCategorys();
+    if (_categorList.categoryDb.isEmpty) {
+      _categorList.updateIndex();
+      final categoryPersonal = TaskCategoryModel(
+          icon: FontAwesomeIcons.solidUser.codePoint,
+          title: 'Personal',
+          description: 'Here i update my personal related tasks',
+          bgColor: _categorList.bgColorList[_categorList.bgColorIndex],
+          iconColor: _categorList.iconColorList[_categorList.iconColorIndex]);
+      await addCategory(categoryPersonal);
+      await getAllCategorys();
+      _categorList.updateIndex();
+      final categoryWork = TaskCategoryModel(
+          icon: FontAwesomeIcons.briefcase.codePoint,
+          title: 'Work',
+          description: 'Here i update my work related tasks',
+          bgColor: _categorList.bgColorList[_categorList.bgColorIndex],
+          iconColor: _categorList.iconColorList[_categorList.iconColorIndex]);
+      await addCategory(categoryWork);
+      await getAllCategorys();
+      _categorList.updateIndex();
+      final categoryHealth = TaskCategoryModel(
+          icon: FontAwesomeIcons.solidHeart.codePoint,
+          title: 'Health',
+          description: 'Here i update my health related tasks',
+          bgColor: _categorList.bgColorList[_categorList.bgColorIndex],
+          iconColor: _categorList.iconColorList[_categorList.iconColorIndex]);
+      await addCategory(categoryHealth);
+      await getAllCategorys();
+    }
   }
 }

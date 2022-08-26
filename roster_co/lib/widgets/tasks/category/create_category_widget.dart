@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roster_co/constants/bottom_sheet_title.dart';
 import 'package:roster_co/constants/category_title.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/cutom_bottom_sheet_text.dart';
@@ -44,7 +43,28 @@ class _CreateTaskCategoryState extends State<CreateTaskCategory> {
                 runSpacing: 20,
                 //crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const BottomSheetTitle(title: 'Create New Category'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Text(
+                        'Create New Category',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      const SizedBox(
+                        width: 25,
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Get.back();
+                            _categoryDbController.resetIcon();
+                          },
+                          child: const Icon(
+                            Icons.close,
+                            color: Colors.black,
+                            size: 35,
+                          ))
+                    ],
+                  ),
                   const TitlePadding(
                     title: 'Category Title',
                   ),
@@ -70,7 +90,10 @@ class _CreateTaskCategoryState extends State<CreateTaskCategory> {
                                 context: context,
                                 defalutIcon:
                                     _categoryDbController.selectedIcon);
-                            _categoryDbController.updateIcon(result!);
+                            _categoryDbController.resetIcon();
+                            (result == null)
+                                ? _categoryDbController.selectedIcon
+                                : _categoryDbController.updateIcon(result);
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -166,9 +189,8 @@ class _CreateTaskCategoryState extends State<CreateTaskCategory> {
             .iconColorList[_categoryDbController.iconColorIndex]);
     await addCategory(category);
     await getAllCategorys();
-
-    Get.back();
     _categoryDbController.resetIcon();
+    Get.back();
   }
 }
 

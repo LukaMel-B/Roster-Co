@@ -5,13 +5,11 @@ import 'package:roster_co/controllers/create_task_db_controller.dart';
 import 'package:roster_co/db/models/task_create_model.dart';
 
 TaskDbController taskList = TaskDbController();
-Future<void> addTask(CreateTaskModel value, int categoryId) async {
+Future<void> addTask(CreateTaskModel value) async {
   final taskDb = await Hive.openBox<CreateTaskModel>('task_db');
   final id = await taskDb.add(value);
   value.idTask = id;
   await taskDb.put(id, value);
-  taskList.addToList(value);
-
   getAllTasks();
 }
 

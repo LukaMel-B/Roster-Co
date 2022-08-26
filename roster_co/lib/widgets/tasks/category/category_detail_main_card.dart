@@ -2,25 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
+import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
-import 'package:roster_co/controllers/category_details_page_controller.dart';
+import 'package:roster_co/controllers/create_task_db_controller.dart';
 import 'package:roster_co/widgets/tasks/category/category_task_card.dart';
 
 // ignore: must_be_immutable
 class CategoryDrawableCard extends StatefulWidget {
-  const CategoryDrawableCard({Key? key}) : super(key: key);
+  final String category;
+  const CategoryDrawableCard({Key? key, required this.category})
+      : super(key: key);
 
   @override
   State<CategoryDrawableCard> createState() => _CategoryDrawableCardState();
 }
 
 class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
-  final CategoryDetailsController _categoryController =
-      Get.put(CategoryDetailsController());
+  final TaskDbController _taskDb = Get.put(TaskDbController());
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Column(
+        child: GetBuilder<TaskDbController>(builder: ((_) {
+      return Column(
         children: [
           Container(
             decoration: const BoxDecoration(
@@ -64,62 +67,81 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
                           ),
                         ),
                       ),
-                      GetBuilder<CategoryDetailsController>(builder: ((_) {
-                        return Text(
-                          (_categoryController.chosen.isEmpty)
-                              ? ' ${_categoryController.todayMonth} ${_categoryController.todayDate.year}'
-                              : ' ${_categoryController.todayMonth} ${_categoryController.pickedYear}',
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Metropolis',
-                          ),
-                        );
-                      })),
+                      Text(
+                        (_taskDb.chosen.isEmpty)
+                            ? ' ${_taskDb.todayMonth} ${_taskDb.todayDate.year}'
+                            : ' ${_taskDb.todayMonth} ${_taskDb.pickedYear}',
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Metropolis',
+                        ),
+                      )
                     ],
                   ),
                   Container(
                     padding: const EdgeInsets.only(bottom: 20),
                     height: (MediaQuery.of(context).size.height) - 90,
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      physics: sPhysics,
-                      itemBuilder: (BuildContext context, index) {
-                        return CategoryTaskCard(
-                          index: index,
-                        );
-                      },
-                      itemCount: 9,
-                    ),
+                    child: (_taskDb.sortedCategoryTasks.isEmpty)
+                        ? Container(
+                            padding: EdgeInsets.only(
+                                top: MediaQuery.of(context).size.height - 590),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  'assets/images/empty1.png',
+                                  height: 140,
+                                ),
+                                sixh_1,
+                                const Text(
+                                  'No tasks yet!',
+                                  style: TextStyle(fontSize: 22),
+                                ),
+                                sixh_1,
+                                const Text(
+                                  'Feel free to add one,\npress the button below',
+                                  style: TextStyle(fontSize: 15),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ))
+                        : ListView.builder(
+                            physics: sPhysics,
+                            itemBuilder: (BuildContext context, index) {
+                              return CategoryTaskCard(
+                                index: index,
+                              );
+                            },
+                            itemCount: _taskDb.sortedCategoryTasks.length,
+                          ),
                   )
                 ],
               ),
             ),
           ),
         ],
-      ),
-    );
+      );
+    })));
   }
 
   Future datePicker() async {
-    _categoryController.pickedDate = (await showMonthPicker(
+    _taskDb.pickedDate = (await showMonthPicker(
           context: context,
           firstDate: DateTime(DateTime.now().year, 5),
           lastDate: DateTime(DateTime.now().year + 50, 9),
-          initialDate: _categoryController.todayDate,
+          initialDate: _taskDb.todayDate,
         )) ??
-        _categoryController.todayDate;
-    _categoryController.updateDate();
-    // _categoryController.pickedDate = (await showDatePicker(
+        _taskDb.todayDate;
+    _taskDb.updateDate();
+    // _taskDb.pickedDate = (await showDatePicker(
     //       context: context,
-    //       initialDate: _categoryController.todayDate,
-    //       firstDate: _categoryController.todayDate,
+    //       initialDate: _taskDb.todayDate,
+    //       firstDate: _taskDb.todayDate,
     //       lastDate: DateTime(2100),
     //       builder: (context, child) {
     //         return PickerTheme(child!);
     //       },
     //     )) ??
-    //     _categoryController.todayDate;
-    // _categoryController.updateDate();
+    //     _taskDb.todayDate;
+    // _taskDb.updateDate();
   }
 }

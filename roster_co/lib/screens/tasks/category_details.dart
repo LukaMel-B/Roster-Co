@@ -21,10 +21,10 @@ class CategoryDetailsScreen extends GetView {
             overscroll.disallowIndicator();
             return true;
           },
-          child: const CustomScrollView(
+          child: CustomScrollView(
             slivers: [
-              CategoryAppBar(),
-              CategoryDrawableCard(),
+              const CategoryAppBar(),
+              CategoryDrawableCard(category: category),
             ],
           ),
         ),

@@ -55,7 +55,6 @@ Future<IconData?> showIconPicker(
     FontAwesomeIcons.handHoldingDollar,
     FontAwesomeIcons.hashtag,
     FontAwesomeIcons.headphones,
-    FontAwesomeIcons.heart,
     FontAwesomeIcons.heartCrack,
     FontAwesomeIcons.heartPulse,
     FontAwesomeIcons.house,
