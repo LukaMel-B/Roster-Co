@@ -4,6 +4,10 @@ import 'package:roster_co/constants/close_button.dart';
 
 late String validatorAlertText;
 final textfieldDeco = InputDecoration(
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Color(0xffCBCBCB), width: .8),
+    ),
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(15),
       borderSide: const BorderSide(color: Color(0xffCBCBCB), width: .8),
@@ -79,21 +83,14 @@ String? Function(String?) validator = ((value) {
   }
 });
 
-var appBarTask = AppBar(
-  centerTitle: true,
-  elevation: 0,
-  backgroundColor: Colors.white,
-  automaticallyImplyLeading: false,
-  title: const Text(
-    'Create task',
-    style:
-        TextStyle(fontFamily: 'Metropolis', color: Colors.black, fontSize: 19),
-  ),
-  actions: const [
-    CustomCloseButton(
-      size: 33,
-    )
-  ],
+var subTaskTitle = const Text(
+  'Create task',
+  style: TextStyle(fontFamily: 'Metropolis', color: Colors.black, fontSize: 19),
+);
+var subTaskIcon = const Icon(
+  Icons.close,
+  color: Colors.black,
+  size: 33,
 );
 
 final titleController = TextEditingController();

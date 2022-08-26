@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
@@ -23,6 +24,8 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
         child: GetBuilder<TaskDbController>(builder: ((_) {
+      _taskDb.initState(
+          widget.category, DateFormat.MMM().format(_taskDb.todayDate));
       return Column(
         children: [
           Container(
@@ -84,12 +87,12 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
                     child: (_taskDb.sortedCategoryTasks.isEmpty)
                         ? Container(
                             padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height - 590),
+                                top: MediaQuery.of(context).size.height - 620),
                             child: Column(
                               children: [
                                 Image.asset(
-                                  'assets/images/empty1.png',
-                                  height: 140,
+                                  'assets/images/empty3.png',
+                                  height: 150,
                                 ),
                                 sixh_1,
                                 const Text(
@@ -132,6 +135,8 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
         )) ??
         _taskDb.todayDate;
     _taskDb.updateDate();
+    final month = DateFormat.MMM().format(_taskDb.pickedDate!);
+    _taskDb.showTaskList(widget.category, month);
     // _taskDb.pickedDate = (await showDatePicker(
     //       context: context,
     //       initialDate: _taskDb.todayDate,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/title_const_class.dart';
+import 'package:roster_co/controllers/add_subtask_controller.dart';
 
 class AddedSubTasks extends StatefulWidget {
   const AddedSubTasks({Key? key}) : super(key: key);
@@ -11,8 +12,7 @@ class AddedSubTasks extends StatefulWidget {
 
 class _AddedSubTasksState extends State<AddedSubTasks> {
   List<Widget> _subTasks = [];
-  final List<TextEditingController> _controllers = [];
-  int _count = 0;
+  final AddSubTaskController _addSubtTaskControllers = AddSubTaskController();
   @override
   void initState() {
     _add();
@@ -47,14 +47,30 @@ class _AddedSubTasksState extends State<AddedSubTasks> {
 
   void _add() {
     TextEditingController controller = TextEditingController();
-    _controllers.add(controller);
+    _addSubtTaskControllers.addController(controller);
     _subTasks = List.from(_subTasks)
       ..add(Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: TextFormField(
           style: txStyle,
-          validator: validator,
+          validator: ((value) {
+            if (value!.isEmpty) {
+              return "This field should be filled!";
+            } else {
+              return null;
+            }
+          }),
           decoration: InputDecoration(
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide:
+                    const BorderSide(color: Color(0xffCBCBCB), width: .8),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide:
+                    const BorderSide(color: Color(0xffCBCBCB), width: .8),
+              ),
               contentPadding: const EdgeInsets.all(19),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
@@ -66,7 +82,8 @@ class _AddedSubTasksState extends State<AddedSubTasks> {
                 borderSide:
                     const BorderSide(color: Color(0xffCBCBCB), width: .8),
               ),
-              hintText: 'Enter subtask ${_count + 1} ...',
+              hintText:
+                  'Enter subtask ${_addSubtTaskControllers.count + 1} ...',
               hintStyle: const TextStyle(
                 fontFamily: 'Metropolis',
                 color: Color(0xffADADAD),
@@ -74,6 +91,6 @@ class _AddedSubTasksState extends State<AddedSubTasks> {
           controller: controller,
         ),
       ));
-    setState(() => ++_count);
+    _addSubtTaskControllers.updateCount();
   }
 }

@@ -32,7 +32,7 @@ class _TaskDatePickerState extends State<TaskDatePicker> {
             subTitle: 'Due Date',
             title: GetBuilder<TaskPickerController>(builder: ((_) {
               return Text(
-                "${_homePageController.todayDate} ${_homePageController.todayMonth} ${_homePageController.result}",
+                "${_homePageController.todayDate} ${_homePageController.todayMonth} '${_homePageController.result}",
                 style: const TextStyle(
                     fontFamily: 'Metropolis',
                     color: Colors.black,

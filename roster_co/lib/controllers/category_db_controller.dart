@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:roster_co/db/models/task_category_model.dart';
 import 'package:roster_co/db/functions/task_db_functions.dart';
 
 class CategoryDbController extends GetxController {
+  final box = GetStorage();
   List<TaskCategoryModel> categoryDb = [];
   IconData? selectedIcon;
   List<Color> bgColorDb = [];
@@ -60,6 +62,8 @@ class CategoryDbController extends GetxController {
       bgColorIndex = 0;
       iconColorIndex = 0;
     }
+    box.write('iconIndex', iconColorIndex);
+    box.write('bgIndex', bgColorIndex);
     update();
   }
 
@@ -72,4 +76,17 @@ class CategoryDbController extends GetxController {
     categoryDb.addAll(values);
     update();
   }
+
+  cleanBox() {
+    box.remove('iconIndex');
+    box.remove('bgIndex');
+  }
+
+  initalIndex() {
+    int iconIndex = box.read('iconIndex') ?? -1;
+    int bgIndex = box.read('bgIndex') ?? -1;
+    iconColorIndex = iconIndex;
+    bgColorIndex = bgIndex;
+  }
 }
+//  Color.fromARGB(255, 229, 255, 229),

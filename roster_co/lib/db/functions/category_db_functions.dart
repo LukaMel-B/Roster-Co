@@ -14,7 +14,6 @@ Future<void> addCategory(TaskCategoryModel value) async {
   final id = await categoryDb.add(value);
   value.idCategory = id;
   await categoryDb.put(id, value);
-  log("From add ${categoryDb.toString()}");
   await getAllCategorys();
 }
 
@@ -22,9 +21,7 @@ Future<void> getAllCategorys() async {
   final categoryDb = await Hive.openBox<TaskCategoryModel>('category_db');
 
   categoryList.categoryDb.clear();
-  log(categoryDb.toString());
   categoryList.addAllToList(categoryDb.values);
-  log(categoryList.categoryDb.toString());
 
   // CategoryListNotifier.value.sort((a, b) {
   //   return a.rollNo.toLowerCase().compareTo(b.rollNo.toLowerCase());

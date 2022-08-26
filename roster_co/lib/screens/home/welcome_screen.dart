@@ -88,6 +88,7 @@ class WelcomeScreen extends GetView {
 
   defaultCategory() async {
     if (_categorList.categoryDb.isEmpty) {
+      _categorList.initalIndex();
       _categorList.updateIndex();
       final categoryPersonal = TaskCategoryModel(
           icon: FontAwesomeIcons.solidUser.codePoint,
@@ -115,6 +116,8 @@ class WelcomeScreen extends GetView {
           iconColor: _categorList.iconColorList[_categorList.iconColorIndex]);
       await addCategory(categoryHealth);
       await getAllCategorys();
+    } else {
+      _categorList.initalIndex();
     }
   }
 }

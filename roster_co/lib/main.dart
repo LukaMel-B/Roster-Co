@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:roster_co/db/functions/category_db_functions.dart';
 import 'package:roster_co/db/models/task_category_model.dart';
@@ -11,7 +12,8 @@ Future<void> main() async {
   Hive.registerAdapter(TaskCategoryModelAdapter());
   await Hive.openBox<TaskCategoryModel>('category_db');
   await getAllCategorys();
-  // clearAllCategorys();
+  await GetStorage.init();
+  //clearAllCategorys();
   runApp(const MyApp());
 }
 

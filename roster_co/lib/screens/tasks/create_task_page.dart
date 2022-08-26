@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:roster_co/constants/close_button.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
 import 'package:roster_co/constants/title_const_class.dart';
-import 'package:roster_co/screens/tasks/category_details.dart';
+import 'package:roster_co/controllers/add_subtask_controller.dart';
 import 'package:roster_co/widgets/tasks/create_task_datepick.dart';
 import 'package:roster_co/widgets/tasks/create_task_priority.dart';
 import 'package:roster_co/widgets/tasks/create_task_snooze_picker.dart';
@@ -16,10 +17,25 @@ class CreateTaskPage extends GetView {
   final String category;
   CreateTaskPage({required this.category, Key? key}) : super(key: key);
   GlobalKey<FormState> formKey = GlobalKey();
+  final AddSubTaskController _subTaskController = AddSubTaskController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBarTask,
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.white,
+          automaticallyImplyLeading: false,
+          title: subTaskTitle,
+          actions: [
+            TextButton(
+                onPressed: () {
+                  _subTaskController.resetCount();
+                  Get.back();
+                },
+                child: subTaskIcon)
+          ],
+        ),
         body: Container(
           color: Colors.white,
           child: Column(
@@ -37,7 +53,13 @@ class CreateTaskPage extends GetView {
                       sixh_1,
                       TextFormField(
                         style: txStyle,
-                        validator: validator,
+                        validator: ((value) {
+                          if (value!.isEmpty) {
+                            return "Title is required!";
+                          } else {
+                            return null;
+                          }
+                        }),
                         controller: titleController,
                         decoration: textfieldDeco,
                       ),
@@ -49,20 +71,24 @@ class CreateTaskPage extends GetView {
                           PriorityPickerWidget(),
                         ],
                       ),
-                      sixh_2,
-                      sixh_1,
+                      sixh_3,
                       const CreatePageTitle(title: 'Description'),
                       sixh_1,
                       TextFormField(
                         style: txStyle,
-                        validator: validator,
+                        validator: ((value) {
+                          if (value!.isEmpty) {
+                            return "Description is required!";
+                          } else {
+                            return null;
+                          }
+                        }),
                         controller: descController,
                         decoration: textfieldDeco,
                         keyboardType: TextInputType.multiline,
                         maxLines: 6,
                       ),
-                      sixh_2,
-                      sixh_1,
+                      sixh_3,
                       const CreatePageTitle(title: 'Time'),
                       sixh_1,
                       Row(
@@ -84,12 +110,10 @@ class CreateTaskPage extends GetView {
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
-              Get.to(
-                () => CategoryDetailsScreen(
-                  category: category,
-                ),
-                transition: Transition.cupertino,
-              );
+              if (formKey.currentState!.validate()) {
+                _subTaskController.resetCount();
+                Get.back(result: CreateTaskPage(category: category));
+              }
             },
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

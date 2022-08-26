@@ -45,4 +45,8 @@ class TaskDbController extends GetxController {
     taskDbList.addAll(values);
     update();
   }
+
+  initState(String category, String month) {
+    showTaskList(category, month);
+  }
 }
