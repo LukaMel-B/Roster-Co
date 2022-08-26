@@ -11,7 +11,7 @@ class CreateTaskModel {
   final String title;
 
   @HiveField(2)
-  final String date;
+  final String dueDate;
 
   @HiveField(3)
   final String priority;
@@ -26,20 +26,23 @@ class CreateTaskModel {
   final int snooze;
 
   @HiveField(7)
-  final SubTaskModel subTask;
+  final List<SubTaskModel> subTasks;
 
   @HiveField(8)
   final String category;
+  @HiveField(9)
+  final String createDate;
 
   CreateTaskModel({
     this.idTask,
     required this.title,
-    required this.date,
+    required this.dueDate,
+    required this.createDate,
     required this.priority,
     required this.description,
     required this.time,
     required this.snooze,
-    required this.subTask,
+    required this.subTasks,
     required this.category,
   });
 }

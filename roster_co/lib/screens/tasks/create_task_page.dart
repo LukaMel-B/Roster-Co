@@ -1,11 +1,17 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
 import 'package:roster_co/constants/title_const_class.dart';
 import 'package:roster_co/controllers/add_subtask_controller.dart';
+import 'package:roster_co/controllers/task_picker_controller.dart';
+import 'package:roster_co/db/functions/task_db_functions.dart';
+import 'package:roster_co/db/models/task_create_model.dart';
 import 'package:roster_co/widgets/tasks/create_task_datepick.dart';
 import 'package:roster_co/widgets/tasks/create_task_priority.dart';
 import 'package:roster_co/widgets/tasks/create_task_snooze_picker.dart';
@@ -16,26 +22,13 @@ class CreateTaskPage extends GetView {
   final String category;
   CreateTaskPage({required this.category, Key? key}) : super(key: key);
   GlobalKey<FormState> formKey = GlobalKey();
-  final AddSubTaskController _subTaskController =
-      Get.put(AddSubTaskController());
+  final AddTaskController _taskController = Get.put(AddTaskController());
+  final TaskPickerController _datePickerController =
+      Get.put(TaskPickerController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          elevation: 0,
-          backgroundColor: Colors.white,
-          automaticallyImplyLeading: false,
-          title: subTaskTitle,
-          actions: [
-            TextButton(
-                onPressed: () {
-                  _subTaskController.resetCount();
-                  Get.back();
-                },
-                child: subTaskIcon)
-          ],
-        ),
+        appBar: appBarTask,
         body: Container(
           color: Colors.white,
           child: Column(
@@ -111,8 +104,7 @@ class CreateTaskPage extends GetView {
         floatingActionButton: FloatingActionButton(
             onPressed: () {
               if (formKey.currentState!.validate()) {
-                _subTaskController.resetCount();
-                Get.back(result: CreateTaskPage(category: category));
+                _onButtonPress();
               }
             },
             shape:
@@ -123,5 +115,30 @@ class CreateTaskPage extends GetView {
               Icons.done,
               size: 45,
             )));
+  }
+
+  void _onButtonPress() async {
+    final subtasks = _taskController.subTaskList;
+
+    final snooze = int.parse(_taskController.snoozeValue.substring(0, 1));
+    final dueDate =
+        DateFormat("yyyy-MM-dd").format(_datePickerController.pickedDate);
+
+    final newTask = CreateTaskModel(
+        title: titleController.text.trim(),
+        dueDate: dueDate,
+        createDate: DateFormat("yyyy-MM-dd").format(DateTime.now()),
+        priority: _taskController.priorityValue,
+        description: descController.text.trim(),
+        time: _datePickerController.selectedTime,
+        snooze: snooze,
+        subTasks: subtasks,
+        category: category);
+
+    log(newTask.subTasks.toString());
+    await addTask(newTask);
+    _taskController.resetCount();
+    Get.back(result: CreateTaskPage(category: category));
+    await getAllTasks();
   }
 }

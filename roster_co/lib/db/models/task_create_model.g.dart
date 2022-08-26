@@ -19,12 +19,13 @@ class CreateTaskModelAdapter extends TypeAdapter<CreateTaskModel> {
     return CreateTaskModel(
       idTask: fields[0] as int?,
       title: fields[1] as String,
-      date: fields[2] as String,
+      dueDate: fields[2] as String,
+      createDate: fields[9] as String,
       priority: fields[3] as String,
       description: fields[4] as String,
       time: fields[5] as String,
       snooze: fields[6] as int,
-      subTask: fields[7] as SubTaskModel,
+      subTasks: (fields[7] as List).cast<SubTaskModel>(),
       category: fields[8] as String,
     );
   }
@@ -32,13 +33,13 @@ class CreateTaskModelAdapter extends TypeAdapter<CreateTaskModel> {
   @override
   void write(BinaryWriter writer, CreateTaskModel obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.idTask)
       ..writeByte(1)
       ..write(obj.title)
       ..writeByte(2)
-      ..write(obj.date)
+      ..write(obj.dueDate)
       ..writeByte(3)
       ..write(obj.priority)
       ..writeByte(4)
@@ -48,9 +49,11 @@ class CreateTaskModelAdapter extends TypeAdapter<CreateTaskModel> {
       ..writeByte(6)
       ..write(obj.snooze)
       ..writeByte(7)
-      ..write(obj.subTask)
+      ..write(obj.subTasks)
       ..writeByte(8)
-      ..write(obj.category);
+      ..write(obj.category)
+      ..writeByte(9)
+      ..write(obj.createDate);
   }
 
   @override

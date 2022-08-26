@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:roster_co/controllers/add_subtask_controller.dart';
 
+final AddTaskController _subTaskController = Get.put(AddTaskController());
 late String validatorAlertText;
 final textfieldDeco = InputDecoration(
     focusedErrorBorder: OutlineInputBorder(
@@ -90,6 +92,21 @@ var subTaskIcon = const Icon(
   Icons.close,
   color: Colors.black,
   size: 33,
+);
+var appBarTask = AppBar(
+  centerTitle: true,
+  elevation: 0,
+  backgroundColor: Colors.white,
+  automaticallyImplyLeading: false,
+  title: subTaskTitle,
+  actions: [
+    TextButton(
+        onPressed: () {
+          _subTaskController.resetCount();
+          Get.back();
+        },
+        child: subTaskIcon)
+  ],
 );
 
 final titleController = TextEditingController();

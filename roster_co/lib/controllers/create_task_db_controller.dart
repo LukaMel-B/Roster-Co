@@ -24,15 +24,12 @@ class TaskDbController extends GetxController {
     update();
   }
 
-  showTaskList(String nameCategory, String searchMonth) {
+  showTaskList(String nameCategory) {
     sortedCategoryTasks = taskDbList.where((element) {
       final categoryLower = element.category.toLowerCase();
-      final dateMonth = element.date.toLowerCase();
       final category = nameCategory.toLowerCase();
-      final month = searchMonth.toLowerCase();
-      return categoryLower.contains(category) && dateMonth.contains(month);
+      return categoryLower.contains(category);
     }).toList();
-
     update();
   }
 
@@ -46,7 +43,8 @@ class TaskDbController extends GetxController {
     update();
   }
 
-  initState(String category, String month) {
-    showTaskList(category, month);
+  initState(String category) {
+    showTaskList(category);
+    update();
   }
 }

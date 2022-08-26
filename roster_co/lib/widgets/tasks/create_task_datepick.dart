@@ -13,7 +13,7 @@ class TaskDatePicker extends StatefulWidget {
 }
 
 class _TaskDatePickerState extends State<TaskDatePicker> {
-  final TaskPickerController _homePageController =
+  final TaskPickerController _datePickerController =
       Get.put(TaskPickerController());
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _TaskDatePickerState extends State<TaskDatePicker> {
             subTitle: 'Due Date',
             title: GetBuilder<TaskPickerController>(builder: ((_) {
               return Text(
-                "${_homePageController.todayDate} ${_homePageController.todayMonth} '${_homePageController.result}",
+                "${_datePickerController.todayDate} ${_datePickerController.todayMonth} '${_datePickerController.yrShort}",
                 style: const TextStyle(
                     fontFamily: 'Metropolis',
                     color: Colors.black,
@@ -45,19 +45,19 @@ class _TaskDatePickerState extends State<TaskDatePicker> {
   }
 
   Future datePicker() async {
-    _homePageController.pickedDate = (await showDatePicker(
+    _datePickerController.pickedDate = (await showDatePicker(
             context: context,
-            initialDate: _homePageController.todayDay,
-            firstDate: _homePageController.todayDay,
+            initialDate: _datePickerController.todayDay,
+            firstDate: _datePickerController.todayDay,
             lastDate: DateTime(2100),
             builder: (context, child) {
               return PickerTheme(child!);
             })) ??
-        _homePageController.todayDay;
+        _datePickerController.todayDay;
 
-    if (_homePageController.pickedDate.toString().isEmpty) {
-      _homePageController.pickedDate = _homePageController.todayDay;
+    if (_datePickerController.pickedDate.toString().isEmpty) {
+      _datePickerController.pickedDate = _datePickerController.todayDay;
     }
-    _homePageController.updateDate();
+    _datePickerController.updateDate();
   }
 }

@@ -12,8 +12,8 @@ class AddedSubTasks extends StatefulWidget {
 }
 
 class _AddedSubTasksState extends State<AddedSubTasks> {
-  final AddSubTaskController _addSubtTaskControllers =
-      Get.put(AddSubTaskController());
+  final AddTaskController _addSubtTaskControllers =
+      Get.put(AddTaskController());
   @override
   void initState() {
     _add();
@@ -39,7 +39,7 @@ class _AddedSubTasksState extends State<AddedSubTasks> {
             )
           ],
         ),
-        GetBuilder<AddSubTaskController>(builder: ((_) {
+        GetBuilder<AddTaskController>(builder: ((_) {
           return Column(
             children: _addSubtTaskControllers.subTasks,
           );

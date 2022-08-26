@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
 import 'package:roster_co/controllers/category_db_controller.dart';
+import 'package:roster_co/controllers/create_task_db_controller.dart';
 import 'package:roster_co/screens/tasks/category_details.dart';
 
 // ignore: must_be_immutable
@@ -12,6 +13,7 @@ class TaskCategoryWidget extends StatelessWidget {
   TaskCategoryWidget({Key? key}) : super(key: key);
   final CategoryDbController _categorController =
       Get.put(CategoryDbController());
+  final TaskDbController _taskDb = Get.put(TaskDbController());
   @override
   Widget build(BuildContext context) {
     return Padding(

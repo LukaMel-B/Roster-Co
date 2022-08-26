@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:roster_co/controllers/add_subtask_controller.dart';
 import 'package:roster_co/widgets/home/custom_card_widget.dart';
 
 class SnoozePickerWidget extends StatefulWidget {
@@ -9,15 +11,7 @@ class SnoozePickerWidget extends StatefulWidget {
 }
 
 class _SnoozePickerWidgetState extends State<SnoozePickerWidget> {
-  String dropdownvalue = '5 Minutes';
-  var items = [
-    '5 Minutes',
-    '10 Minutes',
-    '15 Minutes',
-    '30 Minutes',
-    '45 Minutes',
-    '1 Hour',
-  ];
+  final AddTaskController _snoozeController = Get.put(AddTaskController());
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,14 +23,14 @@ class _SnoozePickerWidgetState extends State<SnoozePickerWidget> {
         title: Expanded(
           child: DropdownButtonHideUnderline(
             child: DropdownButton(
-              value: dropdownvalue,
+              value: _snoozeController.snoozeValue,
               icon: const SizedBox(height: 0),
               onChanged: (String? newValue) {
                 setState(() {
-                  dropdownvalue = newValue!;
+                  _snoozeController.snoozeValue = newValue!;
                 });
               },
-              items: items.map((location) {
+              items: _snoozeController.itemsSnooze.map((location) {
                 return DropdownMenuItem(
                   value: location,
                   child: Text(location),

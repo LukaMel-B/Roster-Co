@@ -91,7 +91,7 @@ class CategoryTaskCard extends GetView {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
-                    '23-12-22',
+                    '2022-12-01',
                     style: TextStyle(color: colors.iconColor[index]),
                   ),
                 )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
+import 'package:roster_co/controllers/task_picker_controller.dart';
 import 'package:roster_co/widgets/home/custom_card_widget.dart';
 
 class TaskTimePicker extends StatefulWidget {
@@ -11,11 +12,7 @@ class TaskTimePicker extends StatefulWidget {
 }
 
 class _TaskTimePickerState extends State<TaskTimePicker> {
-  final todayDay = DateTime.now();
-  String result = DateFormat.jm().format(DateTime.now()).toString();
-  String choosen = '';
-  late TimeOfDay? pickedTime;
-
+  final TaskPickerController _timePicker = Get.put(TaskPickerController());
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -32,7 +29,7 @@ class _TaskTimePickerState extends State<TaskTimePicker> {
             icon: Icons.alarm,
             subTitle: 'Due Time',
             title: Text(
-              result,
+              _timePicker.selectedTime,
               style: const TextStyle(
                   fontFamily: 'Metropolis', color: Colors.black, fontSize: 15),
             ),
@@ -42,7 +39,7 @@ class _TaskTimePickerState extends State<TaskTimePicker> {
   }
 
   Future timePicker() async {
-    pickedTime = (await showTimePicker(
+    _timePicker.pickedTime = (await showTimePicker(
             context: context,
             initialTime: TimeOfDay.now(),
             builder: (context, child) {
@@ -50,8 +47,7 @@ class _TaskTimePickerState extends State<TaskTimePicker> {
             })) ??
         TimeOfDay.now();
     setState(() {
-      choosen = 'notnull';
-      result = pickedTime!.format(context);
+      _timePicker.updateTime(context);
     });
   }
 }
