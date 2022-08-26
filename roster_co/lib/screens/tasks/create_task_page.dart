@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roster_co/constants/close_button.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
 import 'package:roster_co/constants/title_const_class.dart';
@@ -17,7 +16,8 @@ class CreateTaskPage extends GetView {
   final String category;
   CreateTaskPage({required this.category, Key? key}) : super(key: key);
   GlobalKey<FormState> formKey = GlobalKey();
-  final AddSubTaskController _subTaskController = AddSubTaskController();
+  final AddSubTaskController _subTaskController =
+      Get.put(AddSubTaskController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

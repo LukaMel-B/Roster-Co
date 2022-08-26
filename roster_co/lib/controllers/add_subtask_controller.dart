@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddSubTaskController extends GetxController {
+  List<Widget> subTasks = [];
   final List<TextEditingController> controllers = [];
   int count = 0;
   addController(TextEditingController controller) {
