@@ -5,7 +5,8 @@ import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
 
 class TaskDescriptionCard extends GetView {
-  const TaskDescriptionCard({Key? key}) : super(key: key);
+  final String desc;
+  const TaskDescriptionCard(this.desc, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class TaskDescriptionCard extends GetView {
             ),
             sixh_1,
             Text(
-              'This is where the desrpition about the task will be present.',
+              desc,
               style:
                   GoogleFonts.inter(textStyle: const TextStyle(fontSize: 16)),
             )

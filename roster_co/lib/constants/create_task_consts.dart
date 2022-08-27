@@ -109,9 +109,6 @@ var appBarTask = AppBar(
   ],
 );
 
-final titleController = TextEditingController();
-final descController = TextEditingController();
-
 class PickerTheme extends GetView {
   final Widget child;
   const PickerTheme(this.child, {Key? key}) : super(key: key);

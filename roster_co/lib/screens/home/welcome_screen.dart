@@ -10,6 +10,7 @@ import 'package:roster_co/screens/home/home_screen.dart';
 class WelcomeScreen extends GetView {
   WelcomeScreen({Key? key}) : super(key: key);
   final CategoryDbController _categorList = Get.put(CategoryDbController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +71,7 @@ class WelcomeScreen extends GetView {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           defaultCategory();
-          Get.offAll(
+          Get.to(
             () => HomeScreen(),
             transition: Transition.cupertino,
           );

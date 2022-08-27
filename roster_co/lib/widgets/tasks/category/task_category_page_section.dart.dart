@@ -13,7 +13,7 @@ class TaskCategoryWidget extends StatelessWidget {
   TaskCategoryWidget({Key? key}) : super(key: key);
   final CategoryDbController _categorController =
       Get.put(CategoryDbController());
-  final TaskDbController _taskDb = Get.put(TaskDbController());
+  final TaskDbController _taskController = Get.put(TaskDbController());
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -52,10 +52,13 @@ class TaskCategoryWidget extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return TextButton(
                       onPressed: () {
+                        _taskController.updatePickedMonth();
                         Get.to(
                           () => CategoryDetailsScreen(
                             category:
                                 _categorController.categoryDb[index].title,
+                            description: _categorController
+                                .categoryDb[index].description,
                           ),
                           transition: Transition.cupertino,
                         );
@@ -99,7 +102,7 @@ class TaskCategoryWidget extends StatelessWidget {
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(20)),
                                   child: Text(
-                                    '${_categorController.taskNumber} Tasks',
+                                    'Review',
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: 'Metropolis',

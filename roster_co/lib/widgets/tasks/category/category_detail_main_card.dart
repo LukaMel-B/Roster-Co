@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:roster_co/constants/create_task_consts.dart';
 import 'package:roster_co/constants/task_details_consts.dart';
 import 'package:roster_co/controllers/create_task_db_controller.dart';
-import 'package:roster_co/db/functions/task_db_functions.dart';
 import 'package:roster_co/widgets/tasks/category/category_task_card.dart';
 
 // ignore: must_be_immutable
@@ -27,7 +25,9 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
         child: GetBuilder<TaskDbController>(
             init: TaskDbController(),
             builder: ((_) {
-              _taskDb.initState(widget.category);
+              final sortDate = _taskDb.pickedMonth.toString().substring(0, 7);
+              _taskDb.initState(widget.category, sortDate);
+              // print(todayDate);
               return Column(
                 children: [
                   Container(
@@ -134,8 +134,7 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
 
   Future datePicker() async {
     // await getAllTasks();
-    print(_taskDb.taskDbList.length);
-    _taskDb.pickedDate = (await showMonthPicker(
+    _taskDb.pickedMonth = (await showMonthPicker(
           context: context,
           firstDate: DateTime(DateTime.now().year, 5),
           lastDate: DateTime(DateTime.now().year + 50, 9),
@@ -143,8 +142,9 @@ class _CategoryDrawableCardState extends State<CategoryDrawableCard> {
         )) ??
         _taskDb.todayDate;
     _taskDb.updateDate();
-    final month = DateFormat.MMM().format(_taskDb.pickedDate!);
-    _taskDb.showTaskList(widget.category);
+    final date = _taskDb.pickedMonth.toString().substring(0, 7);
+    print(date);
+    _taskDb.showTaskList(widget.category, date);
     // _taskDb.pickedDate = (await showDatePicker(
     //       context: context,
     //       initialDate: _taskDb.todayDate,

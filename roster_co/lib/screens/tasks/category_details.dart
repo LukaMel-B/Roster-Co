@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roster_co/constants/category_title.dart';
 import 'package:roster_co/screens/tasks/create_task_page.dart';
 import 'package:roster_co/widgets/tasks/category/category_appbar.dart';
 import 'package:roster_co/widgets/tasks/category/category_detail_main_card.dart';
@@ -8,9 +7,11 @@ import 'package:roster_co/widgets/tasks/category/category_detail_main_card.dart'
 // ignore: must_be_immutable
 class CategoryDetailsScreen extends GetView {
   final String category;
+  final String description;
+  const CategoryDetailsScreen(
+      {required this.description, required this.category, Key? key})
+      : super(key: key);
 
-  CategoryDetailsScreen({required this.category, Key? key}) : super(key: key);
-  TaskCategoryTitle titleTask = TaskCategoryTitle();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +24,10 @@ class CategoryDetailsScreen extends GetView {
           },
           child: CustomScrollView(
             slivers: [
-              const CategoryAppBar(),
+              CategoryAppBar(
+                category: category,
+                description: description,
+              ),
               CategoryDrawableCard(category: category),
             ],
           ),

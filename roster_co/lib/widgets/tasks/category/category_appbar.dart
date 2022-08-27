@@ -4,7 +4,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CategoryAppBar extends GetView {
-  const CategoryAppBar({Key? key}) : super(key: key);
+  final String category;
+  final String description;
+  const CategoryAppBar(
+      {required this.description, required this.category, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +45,9 @@ class CategoryAppBar extends GetView {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Personal tasks',
-              style: TextStyle(
+            Text(
+              '$category tasks',
+              style: const TextStyle(
                   fontFamily: 'Metropolis',
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -53,7 +57,7 @@ class CategoryAppBar extends GetView {
               height: 5,
             ),
             Text(
-              'Description about the task category',
+              description,
               style: GoogleFonts.inter(
                   textStyle: TextStyle(
                 fontSize: 10,

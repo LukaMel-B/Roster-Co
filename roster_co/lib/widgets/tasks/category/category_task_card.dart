@@ -1,17 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roster_co/constants/category_title.dart';
-import 'package:roster_co/constants/color_consts.dart';
-import 'package:roster_co/constants/icon_constants.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:roster_co/controllers/color_const_controller.dart';
+import 'package:roster_co/controllers/create_task_db_controller.dart';
 import 'package:roster_co/screens/tasks/%20task_details_page.dart';
 
 // ignore: must_be_immutable
-class CategoryTaskCard extends GetView {
+class CategoryTaskCard extends StatefulWidget {
   final int index;
-  CategoryTaskCard({Key? key, required this.index}) : super(key: key);
-  TaskCategoryTitle title = TaskCategoryTitle();
-  ColorList colors = ColorList();
-  CategoryPageIconLists priorityIconList = CategoryPageIconLists();
+  const CategoryTaskCard({Key? key, required this.index}) : super(key: key);
+
+  @override
+  State<CategoryTaskCard> createState() => _CategoryTaskCardState();
+}
+
+class _CategoryTaskCardState extends State<CategoryTaskCard> {
+  final ColorListController _colorListController =
+      Get.put(ColorListController());
+
+  final TaskDbController _taskController = Get.put(TaskDbController());
+  @override
+  void initState() {
+    _colorListController.updatePriortiy(
+        _taskController.sortedCategoryTasks[widget.index].priority);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -21,28 +35,41 @@ class CategoryTaskCard extends GetView {
         ),
       ),
       onPressed: () {
-        Get.to(
-          () => TaskDetailsScreen(
-            title: title.categoryTitleList[index],
-          ),
-          transition: Transition.cupertino,
-        );
+        Future.microtask(() => (Get.to(
+              () => TaskDetailsScreen(
+                index: widget.index,
+              ),
+              transition: Transition.cupertino,
+            )));
+        // Navigator.push(
+        //     context,
+        //     PageRouteBuilder(
+        //       barrierDismissible: true,
+        //       opaque: false,
+        //       pageBuilder: ((context, animation, secondaryAnimation) =>
+        //           TaskDetailsScreen(
+        //             index: widget.index,
+        //           )),
+        //     ));
       },
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: colors.bgColor[index],
+          color: _colorListController.bgColorList[widget.index],
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [priorityIconList.priorityIconList[index]]),
+            Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+              Icon(
+                _colorListController.iconPriority,
+                color: Colors.black,
+              )
+            ]),
             Text(
-              title.categoryTitleList[index],
+              _taskController.sortedCategoryTasks[widget.index].title,
               style: const TextStyle(
                   fontSize: 21, fontFamily: 'Metropolis', color: Colors.black),
             ),
@@ -65,7 +92,8 @@ class CategoryTaskCard extends GetView {
                         style: TextStyle(
                           fontSize: 14,
                           fontFamily: 'Metropolis',
-                          color: colors.iconColor[index],
+                          color:
+                              _colorListController.iconColorList[widget.index],
                         ),
                       ),
                     ),
@@ -82,7 +110,8 @@ class CategoryTaskCard extends GetView {
                         style: TextStyle(
                           fontSize: 14,
                           fontFamily: 'Metropolis',
-                          color: colors.iconColor[index],
+                          color:
+                              _colorListController.iconColorList[widget.index],
                         ),
                       ),
                     ),
@@ -91,8 +120,11 @@ class CategoryTaskCard extends GetView {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
-                    '2022-12-01',
-                    style: TextStyle(color: colors.iconColor[index]),
+                    _taskController
+                        .sortedCategoryTasks[widget.index].createDate,
+                    style: TextStyle(
+                        color:
+                            _colorListController.iconColorList[widget.index]),
                   ),
                 )
               ],

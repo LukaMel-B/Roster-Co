@@ -14,7 +14,6 @@ Future<void> addTask(CreateTaskModel value) async {
   value.idTask = id;
   await taskDb.put(id, value);
   await getAllTasks();
-  log("frm add ${taskDb.get(id)!.subTasks}");
 }
 
 Future<void> getAllTasks() async {
@@ -29,7 +28,7 @@ Future<void> getAllTasks() async {
 
 Future<void> clearAllTasks() async {
   final taskDB = await Hive.openBox<CreateTaskModel>('task_db');
-  taskList.taskDbList.clear();
+  taskList.clearAll();
   taskDB.clear();
 }
 

@@ -21,6 +21,7 @@ Future<void> main() async {
   await getAllTasks();
   await GetStorage.init();
   //clearAllCategorys();
+  //await clearAllTasks();
   runApp(const MyApp());
 }
 

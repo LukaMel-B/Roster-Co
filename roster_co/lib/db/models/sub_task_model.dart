@@ -12,6 +12,12 @@ class SubTaskModel {
   @HiveField(2)
   final bool isDelete;
 
+  @HiveField(3)
+  double? idSubTask;
+
   SubTaskModel(
-      {required this.subTask, required this.isDone, required this.isDelete});
+      {this.idSubTask,
+      required this.subTask,
+      required this.isDone,
+      required this.isDelete});
 }

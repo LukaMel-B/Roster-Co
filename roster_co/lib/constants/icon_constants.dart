@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:roster_co/constants/color_consts.dart';
+import 'package:roster_co/controllers/color_const_controller.dart';
 
-ColorList color = ColorList();
+ColorListController color = ColorListController();
 
 class HomePageIconLists {
   List taskIconList = [

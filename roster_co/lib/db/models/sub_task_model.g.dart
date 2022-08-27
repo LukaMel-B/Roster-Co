@@ -20,19 +20,22 @@ class SubTaskModelAdapter extends TypeAdapter<SubTaskModel> {
       subTask: fields[0] as String,
       isDone: fields[1] as bool,
       isDelete: fields[2] as bool,
+      idSubTask: fields[3] as double?,
     );
   }
 
   @override
   void write(BinaryWriter writer, SubTaskModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.subTask)
       ..writeByte(1)
       ..write(obj.isDone)
       ..writeByte(2)
-      ..write(obj.isDelete);
+      ..write(obj.isDelete)
+      ..writeByte(3)
+      ..write(obj.idSubTask);
   }
 
   @override

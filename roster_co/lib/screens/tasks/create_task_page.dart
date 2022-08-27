@@ -1,7 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -53,7 +51,7 @@ class CreateTaskPage extends GetView {
                             return null;
                           }
                         }),
-                        controller: titleController,
+                        controller: _taskController.titleController,
                         decoration: textfieldDeco,
                       ),
                       sixh_2,
@@ -76,7 +74,7 @@ class CreateTaskPage extends GetView {
                             return null;
                           }
                         }),
-                        controller: descController,
+                        controller: _taskController.descController,
                         decoration: textfieldDeco,
                         keyboardType: TextInputType.multiline,
                         maxLines: 6,
@@ -125,20 +123,18 @@ class CreateTaskPage extends GetView {
         DateFormat("yyyy-MM-dd").format(_datePickerController.pickedDate);
 
     final newTask = CreateTaskModel(
-        title: titleController.text.trim(),
+        title: _taskController.titleController.text.trim(),
         dueDate: dueDate,
         createDate: DateFormat("yyyy-MM-dd").format(DateTime.now()),
         priority: _taskController.priorityValue,
-        description: descController.text.trim(),
+        description: _taskController.descController.text.trim(),
         time: _datePickerController.selectedTime,
         snooze: snooze,
         subTasks: subtasks,
         category: category);
-
-    log(newTask.subTasks.toString());
     await addTask(newTask);
-    _taskController.resetCount();
     Get.back(result: CreateTaskPage(category: category));
     await getAllTasks();
+    _taskController.resetCount();
   }
 }

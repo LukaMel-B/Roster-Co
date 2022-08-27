@@ -7,15 +7,27 @@ class TaskDbController extends GetxController {
   List<CreateTaskModel> sortedCategoryTasks = [];
   DateTime todayDate = DateTime.now();
   String todayMonth = DateFormat.MMM().format(DateTime.now());
-  DateTime? pickedDate;
+  DateTime pickedMonth = DateTime.now();
   String chosen = '';
-  late String pickedMonth;
-  late String pickedYear;
+  int taskNo = 0;
+  String pickedYear = '';
+  updatePickedMonth() {
+    chosen = '';
+    todayMonth = DateFormat.MMM().format(DateTime.now());
+    pickedYear = todayDate.year.toString();
+    pickedMonth = DateTime.now();
+    update();
+  }
+
+  updateTaskNo(int value) {
+    taskNo = value;
+    update();
+  }
 
   updateDate() {
     chosen = 'notnull';
-    todayMonth = DateFormat.MMM().format(pickedDate!);
-    pickedYear = pickedDate!.year.toString();
+    todayMonth = DateFormat.MMM().format(pickedMonth);
+    pickedYear = pickedMonth.year.toString();
     update();
   }
 
@@ -24,18 +36,15 @@ class TaskDbController extends GetxController {
     update();
   }
 
-  showTaskList(String nameCategory) {
+  showTaskList(String nameCategory, String dateCategory) {
     sortedCategoryTasks = taskDbList.where((element) {
       final categoryLower = element.category.toLowerCase();
       final category = nameCategory.toLowerCase();
-      return categoryLower.contains(category);
+      final date = dateCategory.toLowerCase();
+      final dateSaved = element.dueDate.substring(0, 7);
+      return categoryLower.contains(category) && dateSaved.contains(date);
     }).toList();
     update();
-  }
-
-  getTaskNo() {
-    final taskno = sortedCategoryTasks.length;
-    return taskno.toString();
   }
 
   addAllToList(Iterable<CreateTaskModel> values) {
@@ -43,8 +52,14 @@ class TaskDbController extends GetxController {
     update();
   }
 
-  initState(String category) {
-    showTaskList(category);
+  initState(String category, String date) {
+    showTaskList(category, date);
+    update();
+  }
+
+  clearAll() {
+    taskDbList.clear();
+    sortedCategoryTasks.clear();
     update();
   }
 }

@@ -1,8 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:roster_co/controllers/color_const_controller.dart';
+import 'package:roster_co/controllers/add_subtask_controller.dart';
 import 'package:roster_co/db/models/task_category_model.dart';
-import 'package:roster_co/db/functions/task_db_functions.dart';
+
+AddTaskController subTask = Get.put(AddTaskController());
+ColorListController colorList = Get.put(ColorListController());
 
 class CategoryDbController extends GetxController {
   final box = GetStorage();
@@ -12,7 +18,6 @@ class CategoryDbController extends GetxController {
   List<Color> iconColorDb = [];
   int bgColorIndex = -1;
   int iconColorIndex = -1;
-  String taskNumber = '0';
 
   List bgColorList = const [
     0xffFEF7E9,
@@ -46,6 +51,7 @@ class CategoryDbController extends GetxController {
 
   updateIcon(IconData result) {
     selectedIcon = result;
+    subTask.iconPriority = Icons.priority_high_rounded;
     update();
   }
 
@@ -67,11 +73,6 @@ class CategoryDbController extends GetxController {
     update();
   }
 
-  updateTaskNo() {
-    taskNumber = taskList.getTaskNo.toString();
-    update();
-  }
-
   addAllToList(Iterable<TaskCategoryModel> values) {
     categoryDb.addAll(values);
     update();
@@ -83,10 +84,15 @@ class CategoryDbController extends GetxController {
   }
 
   initalIndex() {
+    colorList.updateColor();
+    double idsb = subTask.boxSubtask.read('isSubTask') ??
+        1000000000000099949986540584949514240;
     int iconIndex = box.read('iconIndex') ?? -1;
     int bgIndex = box.read('bgIndex') ?? -1;
+    subTask.idsubTask = idsb;
     iconColorIndex = iconIndex;
     bgColorIndex = bgIndex;
+    update();
   }
 }
 //  Color.fromARGB(255, 229, 255, 229),
